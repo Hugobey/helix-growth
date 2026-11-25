@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    background: #f3eee6;
+    color: #1c1916;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    margin: 0;
+    min-height: 100svh;
+    background: #f3eee6;
+    color: #1c1916;
+    font-family: Satoshi, system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: #1c1916;
+    color: #f3eee6;
+  }
+
+  :focus-visible {
+    outline: 2px solid #1c1916;
+    outline-offset: 3px;
+  }
+
+  .on-ink :focus-visible,
+  .on-graphite :focus-visible {
+    outline-color: #f3eee6;
+  }
+}
+
+.wash-host {
+  background-image:
+    radial-gradient(540px 300px at var(--hx, 76%) var(--hy, 16%), rgba(255, 77, 28, 0.16), transparent 62%),
+    radial-gradient(460px 280px at var(--hx2, 8%) 92%, rgba(62, 109, 136, 0.12), transparent 66%);
+}
+
+.wash-host-dark {
+  background-color: #241f1b;
+  background-image:
+    radial-gradient(520px 280px at var(--hx, 80%) var(--hy, 20%), rgba(255, 77, 28, 0.22), transparent 60%),
+    radial-gradient(420px 260px at 12% 100%, rgba(62, 109, 136, 0.2), transparent 64%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .strand {
+    stroke-dasharray: 140 18;
+    animation: strand-flow 22s linear infinite;
+  }
+
+  .wash-host:hover .strand,
+  .group:hover .strand {
+    animation-duration: 10s;
+  }
+
+  .glyph-node {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .group:hover .glyph-node {
+    animation: node-pulse 1.2s ease-in-out infinite;
+  }
+}
+
+@keyframes strand-flow {
+  to {
+    stroke-dashoffset: -320;
+  }
+}
+
+@keyframes node-pulse {
+  50% {
+    transform: scale(1.35);
+  }
+}
+
+.chart-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .chart-draw {
+    stroke-dashoffset: 1;
+    animation: chart-draw 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .chart-draw-late {
+    animation-delay: 0.55s;
+  }
+}
+
+@keyframes chart-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.font-display {
+  font-family: "Cabinet Grotesk", Satoshi, system-ui, sans-serif;
+  font-synthesis: none;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.section-pad {
+  padding-top: 6.5rem;
+  padding-bottom: 6.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-pad {
+    padding-top: 9.5rem;
+    padding-bottom: 9.5rem;
+  }
+}
+
+.node-field,
+.node-field-dark {
+  background-repeat: no-repeat;
+  opacity: 0.55;
+}
+
+.node-field {
+  background-image:
+    radial-gradient(circle at 14% 22%, rgba(255, 77, 28, 0.95) 0 1.6px, transparent 2.2px),
+    radial-gradient(circle at 72% 36%, rgba(62, 109, 136, 0.9) 0 1.5px, transparent 2.1px),
+    radial-gradient(circle at 38% 78%, rgba(28, 25, 22, 0.4) 0 1.3px, transparent 1.9px),
+    radial-gradient(circle at 86% 72%, rgba(255, 77, 28, 0.75) 0 1.5px, transparent 2.1px);
+}
+
+.node-field-dark {
+  background-image:
+    radial-gradient(circle at 16% 28%, rgba(255, 77, 28, 0.95) 0 1.6px, transparent 2.2px),
+    radial-gradient(circle at 68% 24%, rgba(217, 208, 195, 0.7) 0 1.4px, transparent 2px),
+    radial-gradient(circle at 40% 80%, rgba(62, 109, 136, 0.85) 0 1.5px, transparent 2.1px),
+    radial-gradient(circle at 88% 70%, rgba(243, 238, 230, 0.55) 0 1.3px, transparent 1.9px);
+}
+
+.film-card {
+  border-radius: 1.35rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .node-field,
+  .node-field-dark {
+    animation: node-drift 42s linear infinite;
+  }
+
+  .film-card {
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .film-card:hover {
+    transform: translateY(-10px);
+  }
+
+  .film-media {
+    transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .film-card:hover .film-media {
+    transform: scale(1.045);
+  }
+
+  .wash-shift {
+    animation: wash-shift 26s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes node-drift {
+  50% {
+    background-position: 36px -18px, -28px 22px, 18px -24px, -22px 14px;
+  }
+}
+
+@keyframes wash-shift {
+  to {
+    filter: saturate(1.08);
+  }
+}
+
+@media (max-width: 700px) {
+  .node-field,
+  .node-field-dark,
+  .wash-shift {
+    animation: none;
+  }
+}

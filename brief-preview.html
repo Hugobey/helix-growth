@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Helix Growth — design tokens</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --surface: #f8fafc;
+        --text: #0f172a;
+        --muted: #64748b;
+        --accent: #f97316;
+        --accent-hover: #ea580c;
+        --line: rgba(15, 23, 42, 0.08);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Inter, system-ui, sans-serif;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      main { max-width: 1200px; margin: 0 auto; padding: 72px 40px; }
+      h1 { font-family: "Playfair Display", Georgia, serif; font-weight: 700; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.05; margin: 0; }
+      h2 { font-family: "Playfair Display", Georgia, serif; font-weight: 700; font-size: clamp(1.75rem, 3.2vw, 2.5rem); margin: 72px 0 24px; }
+      p.lead { max-width: 38rem; color: var(--muted); }
+      .swatches { display: flex; flex-wrap: wrap; gap: 16px; }
+      .swatch { width: 160px; }
+      .swatch i { display: block; height: 88px; border: 1px solid var(--line); }
+      .swatch span, .swatch b { display: block; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.75rem; font-weight: 400; }
+      .swatch span { margin-top: 8px; }
+      .swatch b { color: var(--muted); }
+      .specimen { padding: 24px 0; border-top: 1px solid var(--line); }
+      .specimen small { font-family: "JetBrains Mono", ui-monospace, monospace; color: var(--muted); font-size: 0.75rem; }
+      .display { font-family: "Playfair Display", Georgia, serif; font-weight: 700; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.05; margin: 8px 0 0; }
+      .body { margin: 8px 0 0; }
+      .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.875rem; margin: 8px 0 0; }
+      .ruler { display: grid; gap: 16px; }
+      .bar { background: var(--surface); border: 1px solid var(--line); }
+      .bar span { display: block; padding: 8px 12px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.75rem; }
+      .section-gap { height: 72px; }
+      .pad-m { height: 24px; width: 40%; }
+      .pad-d { height: 40px; width: 60%; }
+      .components { display: grid; gap: 24px; max-width: 420px; }
+      button, input { font: inherit; }
+      .btn { background: var(--accent); color: var(--text); border: 0; border-radius: 6px; padding: 12px 20px; cursor: pointer; }
+      .btn:hover { background: var(--accent-hover); }
+      .btn:focus-visible, input:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+      .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
+      .card h3 { font-family: "Playfair Display", Georgia, serif; margin: 0 0 8px; font-size: 1.5rem; }
+      .card p { margin: 0; }
+      label { display: grid; gap: 8px; font-size: 0.875rem; }
+      input[type="text"] { background: transparent; border: 0; border-bottom: 1px solid var(--text); padding: 8px 0; color: var(--text); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="mono">Helix Growth · tokens</p>
+      <h1>Light ground. Ink type. One coral.</h1>
+      <p class="lead">Editorial desk for a subscription-app consultancy. Balanced density. No gradients.</p>
+
+      <h2>Color</h2>
+      <div class="swatches">
+        <div class="swatch"><i style="background:#ffffff"></i><span>Background</span><b>#FFFFFF</b></div>
+        <div class="swatch"><i style="background:#f8fafc"></i><span>Surface</span><b>#F8FAFC</b></div>
+        <div class="swatch"><i style="background:#0f172a"></i><span>Text</span><b>#0F172A</b></div>
+        <div class="swatch"><i style="background:#64748b"></i><span>Secondary</span><b>#64748B</b></div>
+        <div class="swatch"><i style="background:#f97316"></i><span>Accent</span><b>#F97316</b></div>
+        <div class="swatch"><i style="background:#ea580c"></i><span>Accent hover</span><b>#EA580C</b></div>
+      </div>
+
+      <h2>Type</h2>
+      <div class="specimen">
+        <small>Display · Playfair Display 700 · clamp(2rem, 5vw, 3.5rem)</small>
+        <p class="display">The quick brown fox jumps over the lazy dog.</p>
+      </div>
+      <div class="specimen">
+        <small>Body · Inter 400 · 1rem / 1.6</small>
+        <p class="body">The quick brown fox jumps over the lazy dog.</p>
+      </div>
+      <div class="specimen">
+        <small>Mono · JetBrains Mono 400 · 0.875rem</small>
+        <p class="mono">The quick brown fox jumps over the lazy dog.</p>
+      </div>
+
+      <h2>Spacing</h2>
+      <div class="ruler">
+        <div class="bar section-gap"><span>Section spacing · 72px</span></div>
+        <div class="bar pad-m"><span>Content padding, mobile · 24px</span></div>
+        <div class="bar pad-d"><span>Content padding, desktop · 40px</span></div>
+      </div>
+
+      <h2>Components</h2>
+      <div class="components">
+        <button class="btn" type="button">Book the sprint</button>
+        <article class="card">
+          <h3>Audit</h3>
+          <p>One working day. Three to five opportunities. No build.</p>
+        </article>
+        <label>App link
+          <input type="text" value="https://" />
+        </label>
+      </div>
+    </main>
+  </body>
+</html>
