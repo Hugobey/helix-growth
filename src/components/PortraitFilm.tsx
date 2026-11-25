@@ -9,27 +9,39 @@ export function PortraitFilm({
   id,
   title,
   delay = 0,
+  start,
+  poster,
+  crop = "native",
+  tone = "navy",
 }: {
   kind: Kind;
   id: string;
   title: string;
   delay?: number;
+  start?: number;
+  poster?: string;
+  crop?: "native" | "landscape";
+  tone?: "navy" | "rose" | "pine";
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const frame = useRef<HTMLIFrameElement>(null);
   const reduce = useReducedMotion();
   const [src, setSrc] = useState<string | null>(null);
   const [failed, setFailed] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const [posterFailed, setPosterFailed] = useState(false);
 
   useEffect(() => {
     const onMessage = (event: MessageEvent) => {
+      if (!fromThisFilm(event, frame.current)) return;
       const origin = String(event.origin);
       const raw = typeof event.data === "string" ? event.data : JSON.stringify(event.data ?? "");
       if (origin.endsWith("tiktok.com")) {
         if (/errorCode|onPlayerError|"type":"error"|unavailable/i.test(raw)) setFailed(true);
-        if (/onVideoPlay|onStateChange|"type":"play"|video_play/i.test(raw)) setPlaying(true);
+        const time = raw.match(/"currentTime":(\d+(?:\.\d+)?)/);
+        if (time && Number(time[1]) > 0.4) setPlaying(true);
       }
-      if (origin.includes("youtube.com") && /"info":1(?!\d)/.test(raw)) setPlaying(true);
+      if (origin.includes("youtube") && /"playerState":1\b/.test(raw)) setPlaying(true);
     };
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
@@ -45,7 +57,7 @@ export function PortraitFilm({
         if (!entry.isIntersecting) return;
         io.disconnect();
         timer = window.setTimeout(() => {
-          setSrc(kind === "tiktok" ? tiktokSrc(id) : youtubeSrc(id));
+          setSrc(kind === "tiktok" ? tiktokSrc(id) : youtubeSrc(id, start));
         }, delay);
       },
       { rootMargin: "160px" },
@@ -55,56 +67,79 @@ export function PortraitFilm({
       io.disconnect();
       window.clearTimeout(timer);
     };
-  }, [delay, id, kind, reduce]);
+  }, [delay, id, kind, reduce, start]);
 
-  const poster = kind === "youtube" || kind === "image" ? (kind === "image" ? id : `https://i.ytimg.com/vi/${id}/hqdefault.jpg`) : undefined;
+  const still = poster || (kind === "image" ? id : kind === "youtube" ? `https://i.ytimg.com/vi/${id}/maxresdefault.jpg` : "");
+  const showStill = Boolean(still) && !posterFailed;
+  const frameClass =
+    crop === "landscape"
+      ? "absolute left-1/2 -top-[12%] h-[128%] w-[405%] max-w-none -translate-x-1/2 border-0"
+      : "absolute -top-16 h-[calc(100%+4rem)] w-full border-0";
 
   return (
-    <div ref={ref} className="film-media absolute inset-0 bg-[#071018]">
-      {poster ? (
+    <div ref={ref} className="film-media absolute inset-0 bg-graphite" aria-hidden="true">
+      {showStill ? (
         <img
-          src={poster}
+          src={still}
           alt=""
-          width={480}
-          height={360}
-          className="absolute left-1/2 top-1/2 h-[145%] w-[260%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover"
+          width={720}
+          height={1280}
+          className="absolute inset-0 h-full w-full object-cover object-center"
           loading="lazy"
+          onError={() => setPosterFailed(true)}
         />
       ) : (
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,#16315c,transparent_55%),linear-gradient(#071426,#071018)]">
-          <HelixMark className="absolute inset-x-[-12%] top-[10%] w-[124%] text-white/35" />
+        <div className={`absolute inset-0 ${fallbackTone[tone]}`}>
+          <HelixMark className="absolute inset-x-[-18%] top-[16%] w-[136%] text-white/45" />
         </div>
       )}
-      {src && kind === "youtube" && (
+      {src && !failed && kind !== "image" && (
         <iframe
+          ref={frame}
           title={title}
           src={src}
-          className={`absolute left-1/2 top-1/2 h-[160%] w-[280%] max-w-none -translate-x-1/2 -translate-y-1/2 transition-opacity duration-700 ${playing ? "opacity-100" : "opacity-0"}`}
+          className={`${frameClass} pointer-events-none transition-opacity duration-700 ${playing ? "opacity-100" : "opacity-0"}`}
           loading="lazy"
-          allow="autoplay; encrypted-media; picture-in-picture"
-          referrerPolicy="strict-origin-when-cross-origin"
-          onLoad={(event) => {
-            event.currentTarget.contentWindow?.postMessage('{"event":"listening","id":1}', "*");
-          }}
-        />
-      )}
-      {src && kind === "tiktok" && !failed && (
-        <iframe
-          title={title}
-          src={src}
-          className={`absolute left-0 top-1/2 h-[178%] w-full -translate-y-1/2 transition-opacity duration-700 ${playing ? "opacity-100" : "opacity-0"}`}
-          loading="lazy"
+          tabIndex={-1}
           allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture"
           referrerPolicy="strict-origin-when-cross-origin"
+          onLoad={(event) => {
+            if (kind !== "youtube") return;
+            event.currentTarget.contentWindow?.postMessage('{"event":"listening","id":1}', "*");
+          }}
         />
       )}
     </div>
   );
 }
 
-function youtubeSrc(id: string) {
+const fallbackTone = {
+  navy: "bg-[radial-gradient(circle_at_50%_30%,#1d4e8c,transparent_55%),linear-gradient(#0c2344,#071018)]",
+  rose: "bg-[radial-gradient(circle_at_50%_30%,#e7b4b0,transparent_55%),linear-gradient(#6a3a42,#2a181c)]",
+  pine: "bg-[radial-gradient(circle_at_50%_30%,#1f6f62,transparent_55%),linear-gradient(#0c3a32,#041812)]",
+};
+
+function fromThisFilm(event: MessageEvent, node: HTMLIFrameElement | null) {
+  const mine = node?.contentWindow;
+  if (!mine || !event.source) return false;
+  if (event.source === mine) return true;
+  try {
+    let cursor = event.source as Window;
+    for (let i = 0; i < 4; i++) {
+      if (cursor === mine) return true;
+      if (!cursor.parent || cursor.parent === cursor) break;
+      cursor = cursor.parent;
+    }
+  } catch {
+    return false;
+  }
+  return false;
+}
+
+function youtubeSrc(id: string, start?: number) {
   const origin = encodeURIComponent(window.location.origin);
-  return `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1&origin=${origin}`;
+  const at = start ? `&start=${start}` : "";
+  return `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&modestbranding=1&playsinline=1&rel=0&fs=0&iv_load_policy=3&disablekb=1&enablejsapi=1&origin=${origin}${at}`;
 }
 
 function tiktokSrc(id: string) {

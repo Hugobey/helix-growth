@@ -5,20 +5,18 @@ import {
   CAL,
   CAL_ADVISORY,
   CAL_SPRINT,
-  MAIL,
   advisoryItems,
   auditItems,
   clients,
-  dimensions,
-  logos,
+  fitNo,
+  fitYes,
   outOfScope,
   results,
+  signals,
   sprintItems,
-  tools,
-  wins,
 } from "../content";
 import { usePageMeta } from "../lib/meta";
-import { Glyph, OfferArt } from "../components/Glyphs";
+import { OfferArt } from "../components/Glyphs";
 import { HelixField, HelixMark, StrandField, useHelixWash } from "../components/Helix";
 import { PortraitFilm } from "../components/PortraitFilm";
 import { Reveal } from "../components/Reveal";
@@ -27,44 +25,43 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Home() {
   usePageMeta(
-    "Helix Growth — Your app is already growing",
-    "Product growth for mobile apps. Conversion, monetization, and retention, with the founder on the work.",
+    "Helix Growth — Turn more users into revenue",
+    "Mobile app growth agency for founders. App monetization, onboarding optimization, paywall optimization, conversion, and subscription retention.",
     "https://helixgrowth.io/",
   );
 
   const heroRef = useHelixWash<HTMLElement>();
   const offerRef = useHelixWash<HTMLElement>();
-  const dataRef = useHelixWash<HTMLElement>();
 
   return (
     <main id="main">
       <section ref={heroRef} className="wash-host wash-shift relative overflow-hidden" id="top">
         <StrandField />
-        <div className="relative mx-auto grid max-w-page items-center gap-12 px-6 section-pad md:px-10 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="relative mx-auto grid max-w-page items-center gap-14 px-6 section-pad md:px-10 lg:grid-cols-[1.05fr_0.95fr]">
           <Reveal className="min-w-0">
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-mute">Mobile app growth studio</p>
-            <h1 className="mt-5 max-w-[12ch] font-display text-[clamp(3.15rem,7vw,5.8rem)] leading-[0.92]">
-              Your app is already growing.
-              <span className="mt-3 block text-ink/75">Let's make it grow better.</span>
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-tide">Mobile app growth agency</p>
+            <h1 className="mt-5 font-display text-[clamp(3.4rem,6.5vw,5.7rem)] leading-[0.9]">
+              Turn more users
+              <span className="block">into revenue.</span>
             </h1>
-            <p className="mt-6 max-w-[36ch] text-[1.15rem] leading-relaxed">
-              I help mobile app founders identify growth opportunities, improve conversion and build more profitable user experiences.
+            <p className="mt-6 max-w-[40ch] text-[1.12rem] leading-relaxed">
+              We help mobile app founders unlock growth opportunities across onboarding, monetization and retention through deeper product insights, behavioral analysis and data-driven decisions.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <a className="inline-flex min-h-11 items-center rounded-md bg-accent px-5 py-3 text-[15px] text-ink hover:bg-accent-hover" href={CAL} target="_blank" rel="noopener noreferrer">
-                Let's talk about your app
+                Let's grow your app
               </a>
               <a className="text-[15px] underline decoration-ink/30 underline-offset-4 hover:decoration-ink" href="#clients">
-                Explore my work
+                Explore our work
               </a>
             </div>
           </Reveal>
           <div className="min-w-0">
-            <div className="relative h-[300px] md:h-[420px]">
+            <div className="relative h-[280px] md:h-[400px]">
               <HelixField className="absolute inset-0" />
             </div>
             <p className="mt-3 max-w-[34ch] font-mono text-[11px] uppercase leading-relaxed tracking-[0.14em] text-mute">
-              Acquisition, activation, monetization, retention. One system.
+              Onboarding, monetization, retention. One reading of the product.
             </p>
           </div>
         </div>
@@ -73,16 +70,22 @@ export function Home() {
       <section className="on-graphite wash-host-dark wash-shift relative scroll-mt-24 overflow-hidden text-ground" id="results">
         <StrandField tone="dark" />
         <div className="relative mx-auto max-w-page px-6 section-pad md:px-10">
-          <Reveal>
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-foam">Recorded results</p>
-            <h2 className="mt-4 max-w-[12ch] font-display text-[clamp(2.6rem,5vw,4.4rem)] leading-[0.96]">The impact.</h2>
-          </Reveal>
-          <div className="mt-16 grid gap-14 md:grid-cols-3 md:gap-8">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <Reveal>
+              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-foam">Recorded results</p>
+              <h2 className="mt-4 max-w-[12ch] font-display text-[clamp(2.6rem,5vw,4.4rem)] leading-[0.96]">Three results.</h2>
+            </Reveal>
+            <Link className="text-[15px] text-ground underline decoration-white/30 underline-offset-4" to="/case-studies">
+              Read the case studies
+            </Link>
+          </div>
+          <div className="mt-16 grid gap-16 md:grid-cols-3 md:gap-10">
             {results.map((item) => (
               <article key={item.id}>
                 <Figure value={item.figure} />
-                <p className="mt-4 font-mono text-[12px] uppercase tracking-[0.16em] text-foam">{item.label}</p>
-                <p className="mt-2 font-display text-[1.35rem] leading-none text-ground/80">{item.name}</p>
+                <p className="mt-5 font-mono text-[12px] uppercase tracking-[0.16em] text-foam">{item.label}</p>
+                <p className="mt-3 font-display text-[1.7rem] leading-none">{item.name}</p>
+                <p className="mt-3 max-w-[28ch] text-[15px] leading-snug text-foam">{item.body}</p>
               </article>
             ))}
           </div>
@@ -91,26 +94,45 @@ export function Home() {
 
       <section className="relative scroll-mt-24 overflow-hidden" id="clients">
         <span id="work" className="sr-only">Work</span>
-        <StrandField />
-        <div className="relative mx-auto max-w-[1440px] px-6 section-pad md:px-10">
+        <div className="relative mx-auto max-w-page px-6 section-pad md:px-10">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-mute">Selected clients</p>
-            <h2 className="mt-4 max-w-[14ch] font-display text-[clamp(2.6rem,5vw,4.4rem)] leading-[0.96]">On screen.</h2>
+            <h2 className="mt-4 max-w-[14ch] font-display text-[clamp(2.6rem,5vw,4.4rem)] leading-[0.96]">In the product.</h2>
           </Reveal>
-          <ul className="mt-16 grid gap-5 md:grid-cols-3">
+          <ul className="mt-16 grid gap-6 lg:grid-cols-3">
             {clients.map((client, index) => (
-              <li key={client.id}>
-                <article className="film-card group relative aspect-[3/4] overflow-hidden bg-graphite">
-                  <PortraitFilm kind={client.kind} id={client.film} title={client.filmTitle} delay={index * 700} />
-                  <div className={`pointer-events-none absolute inset-0 bg-gradient-to-t ${client.gradient}`} />
-                  <div className="absolute inset-x-0 bottom-0 p-5 text-white md:p-6">
+              <li key={client.id} className="min-w-0">
+                <article className="film-card group relative aspect-[9/16] overflow-hidden bg-graphite">
+                  <PortraitFilm
+                    kind={client.kind}
+                    id={client.film}
+                    title={client.filmTitle}
+                    delay={index * 700}
+                    start={client.start}
+                    poster={client.poster || undefined}
+                    crop={client.kind === "youtube" ? "landscape" : "native"}
+                    tone={client.id === "prose" ? "rose" : client.id === "perifit" ? "pine" : "navy"}
+                  />
+                  <div className={`pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[58%] ${client.kind === "tiktok" ? (client.id === "prose" ? "bg-[#2a181c]" : "bg-[#07111f]") : ""}`} />
+                  <div className={`pointer-events-none absolute inset-0 z-[6] bg-gradient-to-t ${client.gradient}`} />
+                  <div className="absolute inset-x-0 bottom-0 z-10 p-5 text-white md:p-6">
                     <img src={client.logo} alt="" className={client.logoClass} />
-                    <h3 className="mt-3 font-display text-[2.15rem] leading-none">
-                      <a className="text-white" href={client.site} target="_blank" rel="noopener noreferrer">
-                        {client.name}
-                      </a>
-                    </h3>
-                    <p className="mt-2 max-w-[24ch] text-[15px] leading-snug text-white/90">{client.line}</p>
+                    <h3 className="mt-4 font-display text-[2.15rem] leading-none">{client.name}</h3>
+                    <p className="mt-2 text-[15px] leading-snug text-white/85">{client.product}</p>
+                    <p className="mt-2 text-[15px] leading-snug">{client.achievement}</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {client.links.map((link) => (
+                        <a
+                          key={link.href}
+                          className="inline-flex min-h-9 items-center rounded-full border border-white/40 px-3 py-1.5 text-[13px] text-white hover:bg-white/10"
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </article>
               </li>
@@ -119,48 +141,66 @@ export function Home() {
         </div>
       </section>
 
-      <section className="relative scroll-mt-24 overflow-hidden bg-surface" id="wins">
-        <StrandField />
-        <div className="relative mx-auto max-w-page px-6 section-pad md:px-10">
+      <section className="relative scroll-mt-24 overflow-hidden bg-surface" id="beyond">
+        <div className="mx-auto grid max-w-page items-center gap-14 px-6 section-pad md:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
           <Reveal>
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-mute">Case studies</p>
-            <h2 className="mt-4 font-display text-[clamp(2.6rem,5vw,4.4rem)] leading-[0.96]">Selected growth wins</h2>
-          </Reveal>
-          <div className="mt-8">
-            {wins.map((win, index) => (
-              <Win key={win.id} win={win} flip={index % 2 === 1} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="relative scroll-mt-24 overflow-hidden bg-ground" id="dimensions">
-        <div className="mx-auto max-w-page px-6 section-pad md:px-10">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <Reveal>
-              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-mute">What I optimize</p>
-              <h2 className="mt-4 max-w-[14ch] font-display text-[clamp(2.4rem,4.5vw,3.8rem)] leading-[0.98]">
-                Six places growth actually leaks.
-              </h2>
-            </Reveal>
-            <Link className="text-[15px] underline decoration-ink/30 underline-offset-4" to="/methodology">
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-tide">The difference</p>
+            <h2 className="mt-4 max-w-[14ch] font-display text-[clamp(2.6rem,5vw,4.4rem)] leading-[0.96]">
+              Look beyond the dashboard.
+            </h2>
+            <p className="mt-6 max-w-[42ch] text-[1.05rem] leading-relaxed">
+              We don't find a low conversion rate and stop at a new screen. We investigate the behavior behind the numbers, connecting quantitative data, qualitative insight, and the product experience.
+            </p>
+            <p className="mt-6 max-w-[28ch] font-display text-[clamp(1.7rem,2.4vw,2.15rem)] leading-[1.15]">
+              A metric tells you what happened. Understanding user behavior helps you investigate why.
+            </p>
+            <p className="mt-6 max-w-[42ch] text-[15px] leading-relaxed text-mute">
+              Clients leave with a clearer product decision, and a stronger chance at subscription app growth.
+            </p>
+            <Link className="mt-6 inline-block text-[15px] underline decoration-ink/30 underline-offset-4" to="/methodology">
               Read the method
             </Link>
-          </div>
-          <ul className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {dimensions.map((item) => (
-              <li key={item.id} className="group bg-surface p-7">
-                <Glyph name={item.id} />
-                <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.14em] text-mute">{item.n}</p>
-                <h3 className="mt-2 font-display text-[1.7rem] leading-none">{item.title}</h3>
-                <p className="mt-3 text-[15px] leading-snug text-mute">{item.line}</p>
-              </li>
-            ))}
-          </ul>
+          </Reveal>
+          <SignalPanel />
         </div>
       </section>
 
-      <section ref={offerRef} className="wash-host relative scroll-mt-24 overflow-hidden" id="engagements">
+      <section className="scroll-mt-24" id="fit">
+        <div className="mx-auto max-w-page px-6 section-pad md:px-10">
+          <Reveal>
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-tide">Who we work with</p>
+            <h2 className="mt-4 max-w-[16ch] font-display text-[clamp(2.5rem,5vw,4.2rem)] leading-[0.96]">
+              Not every app is ready for growth. And that's okay.
+            </h2>
+          </Reveal>
+          <div className="mt-14 grid gap-4 lg:grid-cols-2">
+            <article className="border-t-4 border-tide bg-surface p-7 md:p-10">
+              <h3 className="font-display text-[1.85rem] leading-none">We're a good fit if...</h3>
+              <ul className="mt-8 space-y-4">
+                {fitYes.map((line) => (
+                  <li key={line} className="flex gap-3 text-[15px] leading-snug">
+                    <FitMark ok />
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+            <article className="on-graphite border-t-4 border-accent bg-graphite p-7 text-ground md:p-10">
+              <h3 className="font-display text-[1.85rem] leading-none">We're probably not a fit if...</h3>
+              <ul className="mt-8 space-y-4">
+                {fitNo.map((line) => (
+                  <li key={line} className="flex gap-3 text-[15px] leading-snug text-foam">
+                    <FitMark ok={false} />
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section ref={offerRef} className="wash-host relative scroll-mt-24 overflow-hidden bg-ground" id="engagements">
         <StrandField />
         <div className="relative mx-auto max-w-page px-6 section-pad md:px-10">
           <Reveal>
@@ -232,85 +272,19 @@ export function Home() {
         </div>
       </section>
 
-      <section ref={dataRef} className="wash-host relative scroll-mt-24 overflow-hidden bg-surface" id="analytics">
-        <div className="relative mx-auto max-w-page px-6 section-pad md:px-10">
-          <Reveal>
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-mute">Behavior to outcome</p>
-            <h2 className="mt-4 max-w-[16ch] font-display text-[clamp(2.4rem,4.5vw,3.8rem)] leading-[0.98]">
-              User behavior, then the business result.
-            </h2>
-          </Reveal>
-          <ol className="mt-8 flex flex-wrap gap-x-4 gap-y-2 font-mono text-[12px] uppercase tracking-[0.14em] text-tide">
-            <li>User behavior</li>
-            <li aria-hidden="true">→</li>
-            <li>Product insight</li>
-            <li aria-hidden="true">→</li>
-            <li>Growth opportunity</li>
-            <li aria-hidden="true">→</li>
-            <li>Business outcome</li>
-          </ol>
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
-            {tools.map((tool) => (
-              <li key={tool.id} className="group flex gap-4 border border-ink/10 bg-ground/80 p-5">
-                <ToolMark logo={tool.logo} name={tool.name} />
-                <div>
-                  <h3 className="font-display text-[1.6rem] leading-none">{tool.name}</h3>
-                  <p className="mt-2 text-[14px] leading-snug text-mute">{tool.line}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-12 max-w-xl">
-            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-mute">Instrumentation · scoped separately</p>
-            <p className="mt-3 text-[16px] leading-relaxed">
-              Optional, and priced on its own. Not part of the $350 review. PostHog is one option. Amplitude, Mixpanel, and RevenueCat are not substitutes for each other.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="scroll-mt-24" id="about">
-        <div className="mx-auto grid max-w-page items-center gap-14 px-6 section-pad md:grid-cols-[0.72fr_1.28fr] md:px-10">
-          <Reveal>
-            <figure>
-              <img src="/assets/hugo.jpg" alt="Hugo Blanchart" width={900} height={900} className="aspect-[4/5] w-full max-w-sm object-cover" />
-              <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-[0.14em] text-mute">Hugo Blanchart</figcaption>
-            </figure>
-          </Reveal>
-          <Reveal>
-            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-mute">The person on the work</p>
-            <h2 className="mt-4 font-display text-[clamp(2.4rem,4.5vw,3.8rem)] leading-[0.98]">Independent Product Growth Strategist.</h2>
-            <p className="mt-4 max-w-lg text-[1.05rem] leading-snug">
-              I work with consumer mobile apps across product, growth, monetization, and conversion. Clients work with me. There is no account team in between.
-            </p>
-            <p className="mt-4 max-w-lg text-[15px] leading-relaxed text-mute">
-              The practice is connecting a product decision to a business result: onboarding, paywalls, subscriptions, retention, and the analytics that make those calls reliable.
-            </p>
-            <ul className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4" aria-label="Teams Hugo has worked with">
-              {logos.map((logo) => (
-                <li key={logo.alt}>
-                  <img src={logo.src} alt={logo.alt} width={logo.width} height={logo.height} className="h-6 w-auto max-w-[6.75rem] object-contain object-left opacity-80" />
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 max-w-lg text-[13px] leading-snug text-mute">
-              Voodoo, Heineken, and Biogen are teams I have worked with. Not employers, and not the results above. Prose is both a team and one of those results.
-            </p>
-            <a className="mt-6 inline-block underline decoration-ink/30 underline-offset-4" href={`mailto:${MAIL}`}>{MAIL}</a>
-          </Reveal>
-        </div>
-      </section>
-
       <section className="on-graphite wash-host-dark wash-shift relative overflow-hidden text-ground">
         <StrandField tone="dark" />
         <div className="relative mx-auto max-w-page px-6 section-pad md:px-10">
-          <HelixMark className="mb-10 w-full max-w-md text-ground/40" />
-          <h2 className="max-w-[12ch] font-display text-[clamp(2.8rem,6vw,5rem)] leading-[0.94]">
-            Tell me where the product is leaking.
+          <HelixMark className="mb-10 w-full max-w-md text-ground/50" />
+          <h2 className="max-w-[14ch] font-display text-[clamp(2.8rem,6vw,5rem)] leading-[0.94]">
+            Bring a live product.
           </h2>
+          <p className="mt-5 max-w-[36ch] text-[1.05rem] leading-relaxed text-foam">
+            We'll read the behavior behind the numbers, and the product decision that follows.
+          </p>
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
             <a className="inline-flex min-h-11 items-center rounded-md bg-accent px-5 py-3 text-[15px] text-ink hover:bg-accent-hover" href={CAL} target="_blank" rel="noopener noreferrer">
-              Let's talk about your app
+              Let's grow your app
             </a>
             <a className="text-[15px] text-ground underline decoration-white/30 underline-offset-4" href="#review">
               Or the $350 review
@@ -326,7 +300,7 @@ function Figure({ value }: { value: string }) {
   const reduce = useReducedMotion();
   return (
     <motion.p
-      className="font-display text-[clamp(4.5rem,8vw,7.2rem)] leading-[0.84] text-ground"
+      className="font-display text-[clamp(4.6rem,8vw,7.4rem)] leading-[0.82] text-accent"
       initial={reduce ? false : { y: 28, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true, amount: 0.8 }}
@@ -337,54 +311,52 @@ function Figure({ value }: { value: string }) {
   );
 }
 
-function Win({
-  win,
-  flip,
-}: {
-  win: (typeof wins)[number];
-  flip: boolean;
-}) {
-  const reduce = useReducedMotion();
+function SignalPanel() {
+  const strand = (phase: number) => {
+    let d = "";
+    for (let i = 0; i <= 72; i++) {
+      const u = i / 72;
+      const x = 20 + Math.sin(u * Math.PI * 4 + phase) * 9;
+      const y = 6 + u * 308;
+      d += `${i ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)} `;
+    }
+    return d;
+  };
+
   return (
-    <article className="grid items-center gap-10 border-t border-ink/10 py-16 first:border-t-0 lg:grid-cols-2 lg:gap-16 lg:py-24">
-      <div className={flip ? "lg:order-2" : ""}>
-        <img src={win.logo} alt="" className={win.logoClass} />
-        <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-tide">{win.n}</p>
-        <h3 className="mt-3 max-w-[16ch] font-display text-[clamp(2rem,3.4vw,3.1rem)] leading-[1.02]">{win.headline}</h3>
-        <div className="mt-6 max-w-[38ch] space-y-2 text-[17px] leading-snug">
-          {win.lines.map((line) => (
-            <p key={line}>{line}</p>
+    <div className="group overflow-hidden bg-graphite px-6 py-8 text-ground md:px-8 md:py-10">
+      <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-foam">What we investigate</p>
+      <div className="relative mt-6">
+        <svg className="pointer-events-none absolute inset-y-0 left-0 h-full w-10" viewBox="0 0 40 320" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <path className="strand" d={strand(0)} fill="none" stroke="#D9D0C3" strokeWidth="1.3" />
+          <path className="strand" d={strand(Math.PI)} fill="none" stroke="#3E6D88" strokeWidth="1.3" />
+        </svg>
+        <ul>
+          {signals.map((signal, index) => (
+            <li key={signal.id} className="grid grid-cols-[2.5rem_1fr] items-center border-b border-white/10 py-[1.05rem] last:border-b-0">
+              <span className={`relative z-10 h-2.5 w-2.5 justify-self-center rounded-full ${index % 2 ? "bg-tide" : "bg-accent"}`} />
+              <span className="text-[16px] leading-snug">{signal.label}</span>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
-      <motion.figure
-        className={flip ? "lg:order-1" : ""}
-        initial={reduce ? false : { opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.35 }}
-        transition={{ duration: 0.7, ease }}
-      >
-        <div className={`overflow-hidden rounded-[1.25rem] ${win.id === "prose" ? "bg-[#f6ebe6]" : win.id === "perifit" ? "bg-[#071c18]" : "bg-[#071426]"}`}>
-          <img
-            src={win.image}
-            alt={win.imageAlt}
-            className={`w-full ${win.id === "prose" ? "aspect-[4/5] origin-center scale-[1.45] object-cover" : "max-h-[640px] object-contain"}`}
-            loading="lazy"
-          />
-        </div>
-        <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-[0.14em] text-mute">{win.caption}</figcaption>
-      </motion.figure>
-    </article>
+    </div>
   );
 }
 
-function ToolMark({ logo, name }: { logo: string; name: string }) {
-  if (!logo) {
+function FitMark({ ok }: { ok: boolean }) {
+  if (ok) {
     return (
-      <span className="grid h-10 w-10 shrink-0 place-items-center border border-ink/15 font-display text-[1.3rem] leading-none" aria-hidden="true">
-        {name.slice(0, 1)}
-      </span>
+      <svg viewBox="0 0 20 20" className="mt-0.5 h-5 w-5 shrink-0 text-tide" aria-hidden="true">
+        <circle cx="10" cy="10" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.25" />
+        <path d="M6 10.2 8.7 13 14 7.4" fill="none" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
     );
   }
-  return <img src={logo} alt="" className="h-10 w-10 shrink-0 object-contain" />;
+  return (
+    <svg viewBox="0 0 20 20" className="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true">
+      <circle cx="10" cy="10" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.25" />
+      <path d="M7 7l6 6M13 7l-6 6" fill="none" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  );
 }

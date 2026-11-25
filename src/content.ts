@@ -110,7 +110,7 @@ export const clients = [
     start: undefined as number | undefined,
     filmTitle: "Official Wizz film. TikTok @wizz_app, video 7335066212700818720.",
     poster: "",
-    gradient: "from-[#04101f] from-[22%] via-[#0a1c38]/80 via-[48%] to-transparent",
+    gradient: "from-[#04101f] via-[#04101f]/92 via-[46%] to-transparent",
     links: [
       { label: "App Store", href: "https://apps.apple.com/fr/app/wizz-app-chat-now/id1452906710" },
       { label: "Google Play", href: "https://play.google.com/store/apps/details?id=info.wizzapp" },
@@ -128,7 +128,7 @@ export const clients = [
     start: undefined as number | undefined,
     filmTitle: "Official Prose film. TikTok @prosebeauty, video 7401154664395214111.",
     poster: "",
-    gradient: "from-[#3a2428] from-[22%] via-[#c48b8b]/45 via-[48%] to-transparent",
+    gradient: "from-[#2a181c] via-[#2a181c]/90 via-[46%] to-transparent",
     links: [{ label: "Visit website", href: "https://prose.com/" }],
   },
   {
@@ -143,7 +143,7 @@ export const clients = [
     start: 13,
     filmTitle: "Official Perifit film. Connected biofeedback, starting at 13 seconds.",
     poster: "https://i.ytimg.com/vi/HBGw15sY0pw/maxresdefault.jpg",
-    gradient: "from-[#041812] from-[22%] via-[#0c4a42]/70 via-[48%] to-transparent",
+    gradient: "from-[#041812] via-[#041812]/92 via-[46%] to-transparent",
     links: [
       { label: "App Store", href: "https://apps.apple.com/fr/app/perifit-care/id1183437203" },
       { label: "Google Play", href: "https://play.google.com/store/apps/details?id=starshipproduct.perifitmainapp" },
