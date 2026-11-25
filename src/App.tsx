@@ -6,6 +6,9 @@ import { CaseArticle } from "./pages/CaseArticle";
 import { Cases } from "./pages/Cases";
 import { Home } from "./pages/Home";
 import { Method } from "./pages/Method";
+import { Prepare } from "./pages/Prepare";
+import { Pricing } from "./pages/Pricing";
+import { Sprint } from "./pages/Sprint";
 
 function ScrollManager() {
   const { pathname, hash } = useLocation();
@@ -47,6 +50,9 @@ export function App() {
         <Route path="/case-studies" element={<Cases />} />
         <Route path="/case-studies/:slug" element={<CaseArticle />} />
         <Route path="/methodology" element={<Method />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/growth-sprint" element={<Sprint />} />
+        <Route path="/preparing-for-a-growth-review" element={<Prepare />} />
         <Route path="*" element={<Missing />} />
       </Routes>
       <Footer />

@@ -1,10 +1,10 @@
 export const CAL = "https://cal.com/hugo-blanchart-hugob-sdd1yn/30min";
-export const CAL_SPRINT = `${CAL}?notes=Growth%20Sprint%20%242%2C800`;
+export const CAL_SPRINT = `${CAL}?notes=Growth%20Sprint%20%242%2C000`;
 export const CAL_AUDIT = `${CAL}?notes=App%20Growth%20Review%20%24350`;
-export const CAL_ADVISORY = `${CAL}?notes=Monthly%20Growth%20Advisory`;
+export const CAL_ADVISORY = `${CAL}?notes=Growth%20Advisory`;
 export const MAIL = "hello@helixgrowth.io";
 export const AUDIT_MAIL =
-  "mailto:hello@helixgrowth.io?subject=App%20Growth%20Review%20%24350&body=App%20link%3A%0A%0AStore%20listing%3A%0A%0AWay%20through%20the%20core%20loop%3A%0A%0AAnalytics%20I%20can%20share%2C%20or%20none%3A%0A%0AThe%20question%20I%20want%20answered%3A%0A";
+  "mailto:hello@helixgrowth.io?subject=App%20Growth%20Review%20%24350&body=App%20or%20a%20way%20in%3A%0A%0AWhat%20you%20want%20understood%3A%0A%0AAnalytics%20you%20can%20share%2C%20or%20none%3A%0A%0AMonetization%20data%20you%20can%20share%2C%20or%20none%3A%0A";
 
 export const logos = [
   { src: "/assets/voodoo.png", alt: "Voodoo", width: 316, height: 64 },
@@ -426,38 +426,71 @@ export const lenses = [
   },
 ];
 
-export const sprintItems = [
-  "Growth and retention diagnosis",
-  "Funnel data audit",
-  "Three to five opportunities",
-  "90-day roadmap",
-  "Category benchmarks",
-  "Notion workspace",
-  "Strategy presentation",
-  "Call on day 30",
-];
+export type Plan = {
+  id: "review" | "sprint" | "advisory";
+  name: string;
+  kicker: string;
+  price: string;
+  priceSize: "figure" | "sentence";
+  position: string;
+  benefits: string[];
+  cta: string;
+  href: string;
+  external: boolean;
+  recommended?: boolean;
+};
 
-export const auditItems = [
-  "Review of the core user journey",
-  "Onboarding and activation assessment",
-  "Paywall and monetization review",
-  "Retention and engagement assessment",
-  "Identification of UX friction",
-  "Review of available analytics, when you provide them",
-  "Three to five prioritized recommendations",
-  "A concise written deliverable",
-];
-
-export const advisoryItems = [
-  "Monthly product and growth reviews",
-  "Analytics interpretation",
-  "Funnel and retention analysis",
-  "Experiment prioritization",
-  "Monetization strategy",
-  "Paywall and onboarding feedback",
-  "Product roadmap guidance",
-  "Review of experiment results",
-  "Regular strategic sessions with the product team",
+export const plans: Plan[] = [
+  {
+    id: "review",
+    name: "App Growth Review",
+    kicker: "One working day",
+    price: "$350",
+    priceSize: "figure",
+    position: "Get an expert perspective on what's holding your app back.",
+    benefits: [
+      "Understand what's holding your app back.",
+      "Identify the most important opportunities.",
+      "Get expert recommendations.",
+    ],
+    cta: "Get your app reviewed",
+    href: AUDIT_MAIL,
+    external: false,
+  },
+  {
+    id: "sprint",
+    name: "Growth Sprint",
+    kicker: "Recommended",
+    price: "$2,000",
+    priceSize: "figure",
+    position: "Find your next growth opportunity. Build a strategy to capture it.",
+    benefits: [
+      "Understand your biggest growth constraints.",
+      "Discover opportunities across the user journey.",
+      "Prioritize high-impact initiatives.",
+      "Establish a clear growth direction.",
+    ],
+    cta: "Discuss your growth sprint",
+    href: CAL_SPRINT,
+    external: true,
+    recommended: true,
+  },
+  {
+    id: "advisory",
+    name: "Growth Advisory",
+    kicker: "Monthly",
+    price: "Let's discuss your needs.",
+    priceSize: "sentence",
+    position: "Keep making better growth decisions.",
+    benefits: [
+      "Get ongoing strategic guidance.",
+      "Make better product decisions.",
+      "Continuously review and refine growth priorities.",
+    ],
+    cta: "Talk about advisory",
+    href: CAL_ADVISORY,
+    external: true,
+  },
 ];
 
 export const outOfScope = [
@@ -474,34 +507,65 @@ export const fit = [
   { ok: false, line: "You want the recommendations built for you." },
 ];
 
-export const faqs = [
+export const pricingFaqs = [
   {
-    q: "Who is this for?",
-    a: "Established mobile app founders and product teams who already have revenue and want the next stage of growth. Indie and early-stage founders can start with the review.",
+    q: "What kind of apps do you work with?",
+    a: "Mobile apps. The review fits an indie developer or a small app business that wants an outside read before a longer engagement. The sprint fits an app that is already live, has users, and is generating revenue. Advisory fits a founder or product team that wants that read to continue.",
   },
   {
-    q: "What is the difference between the three engagements?",
-    a: "The App Growth Review is $350 and lands in one working day: a focused written review with three to five recommendations. Not an exhaustive audit, and not a build. The Growth Sprint is $2,800 across seven days, inside your numbers, with the roadmap, Notion, and a call on day 30. Monthly Growth Advisory is a custom monthly engagement. No monthly price is listed, because it is scoped to the team.",
+    q: "Do you implement the recommendations?",
+    a: "No. The review and the sprint are strategic. We do not build the product, and we do not develop every change we recommend. Your team implements. Advisory is guidance, not a development retainer.",
   },
   {
-    q: "Do you run ongoing experiments?",
-    a: "Your team ships. The sprint includes questions and the call on day 30. Monthly Growth Advisory is strategic guidance, not an implementation retainer and not a development retainer. Analytics setup is scoped separately, and it is not part of the $350 review.",
+    q: "What data access is required?",
+    a: "A way into the app. Analytics where you already have them. Monetization data when the question is revenue. If a source is missing, we say so. We do not invent the numbers. Setting up a new analytics tool is not part of the $350 review.",
   },
   {
-    q: "What do you need?",
-    a: "A build, the store listing, and a way through the core loop. Analytics if you have them. If you have none, say so. I will not invent the numbers.",
+    q: "How long does an engagement take?",
+    a: "The App Growth Review takes no more than one working day. The Growth Sprint is about seven days. Advisory continues month to month. The shape of that month is agreed in the conversation. It is not a fixed calendar.",
   },
   {
-    q: "How fast is delivery?",
-    a: "The review is one working day from access. The sprint is seven days, then day 30. Neither promises that revenue moves inside the engagement.",
+    q: "Is the Growth Review a full audit?",
+    a: "No. It is a focused App Growth Review: the bottlenecks and the opportunities that deserve attention first. It is not a comprehensive technical audit, and it is not an implementation.",
   },
   {
-    q: "Can an early app book?",
-    a: "The review fits once a person can open the product. The sprint fits once people return and a funnel exists. Advisory fits a team that wants a continuing outside read.",
+    q: "Can we continue working together?",
+    a: "Yes. A review can lead into a sprint. A sprint can lead into advisory. Neither step is required. Each engagement stands on its own.",
   },
   {
-    q: "NDA, and currency?",
-    a: "An NDA on every engagement. The review is $350. The sprint is $2,800. Advisory is custom. I invoice in USD, EUR, or GBP.",
+    q: "Are results guaranteed?",
+    a: "No. A recommendation is a direction to validate, not a promise that revenue will move. We do not guarantee a revenue increase.",
+  },
+];
+
+export const prepareItems = [
+  {
+    title: "Business objectives",
+    why: "The review should answer the decision in front of you. A revenue goal, a conversion goal, or a retention goal changes which part of the product we open first.",
+  },
+  {
+    title: "Product analytics",
+    why: "Funnels and events show what happened. If the stack is thin, we can still walk the product, and we will say which questions the data cannot answer yet.",
+  },
+  {
+    title: "Monetization metrics",
+    why: "Trials, paid conversion, price, and renewal keep a screen-level rate honest. A higher completion rate that does not reach revenue is a different problem.",
+  },
+  {
+    title: "Onboarding funnel",
+    why: "The steps from first open to the first meaningful action are where a lot of growth is lost, often before anyone sees a paywall.",
+  },
+  {
+    title: "Retention data",
+    why: "Cohorts, renewal, and the action people repeat show whether the product has a reason to be opened again. A payment without that reason shows up later as churn.",
+  },
+  {
+    title: "Relevant product access",
+    why: "A build, a test account, or a path through the core loop lets us do what a new user does. A dashboard alone cannot show whether a screen is understood.",
+  },
+  {
+    title: "Current growth challenges",
+    why: "The question you already have focuses the day. It is a starting point. It is not the conclusion.",
   },
 ];
 

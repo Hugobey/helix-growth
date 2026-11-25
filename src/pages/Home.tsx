@@ -1,19 +1,14 @@
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import {
-  AUDIT_MAIL,
   CAL,
-  CAL_ADVISORY,
-  CAL_SPRINT,
-  advisoryItems,
-  auditItems,
   clients,
   fitNo,
   fitYes,
   outOfScope,
+  plans,
   results,
   signals,
-  sprintItems,
 } from "../content";
 import { usePageMeta } from "../lib/meta";
 import { OfferArt } from "../components/Glyphs";
@@ -208,60 +203,42 @@ export function Home() {
             <h2 className="mt-4 max-w-[16ch] font-display text-[clamp(2.4rem,4.5vw,3.8rem)] leading-[0.98]">
               A review, a sprint, or a continuing partner.
             </h2>
+            <p className="mt-5 max-w-[36rem] text-[1.05rem] leading-relaxed">
+              <Link className="underline decoration-ink/30 underline-offset-4" to="/pricing">Compare the three on the pricing page.</Link>
+            </p>
           </Reveal>
           <div className="mt-12 grid items-stretch gap-4 lg:grid-cols-3">
-            <article id="review" className="flex scroll-mt-28 flex-col border border-ink/10 bg-surface p-6 md:p-8">
-              <span id="audit" />
-              <OfferArt name="review" />
-              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-mute">01 · One working day</p>
-              <h3 className="mt-3 font-display text-[2.1rem] leading-none">App Growth Review</h3>
-              <p className="mt-4 font-mono text-[2.2rem] leading-none">$350</p>
-              <p className="mt-4 text-[17px] leading-snug">Find out what's holding your app back.</p>
-              <p className="mt-3 text-[14px] leading-snug text-mute">A focused review. Not an exhaustive audit.</p>
-              <ul className="mt-6 border-t border-ink/10">
-                {auditItems.map((item) => (
-                  <li key={item} className="border-b border-ink/10 py-2.5 text-[14px] leading-snug">{item}</li>
-                ))}
-              </ul>
-              <p className="mt-4 text-[13px] leading-snug text-mute">No implementation, no A/B test execution, and no ongoing support.</p>
-              <a className="mt-6 inline-flex min-h-11 items-center justify-center rounded-md bg-ink px-4 py-3 text-center text-[15px] text-ground" href={AUDIT_MAIL}>
-                Get your App Growth Review
-              </a>
-            </article>
-
-            <article id="sprint" className="on-graphite flex scroll-mt-28 flex-col bg-graphite p-6 text-ground md:p-8">
-              <OfferArt name="sprint" />
-              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-foam">02 · 7 days + day 30 · two a month</p>
-              <h3 className="mt-3 font-display text-[2.1rem] leading-none">Growth Sprint</h3>
-              <p className="mt-4 font-mono text-[2.2rem] leading-none">$2,800</p>
-              <p className="mt-4 text-[17px] leading-snug">A deeper diagnosis. A clear growth direction.</p>
-              <ul className="mt-6 border-t border-white/15">
-                {sprintItems.map((item) => (
-                  <li key={item} className="border-b border-white/15 py-2.5 text-[14px]">{item}</li>
-                ))}
-              </ul>
-              <p className="mt-4 text-[13px] leading-snug text-foam">Two rounds of rework if it misses the brief. Your team ships.</p>
-              <a className="mt-6 inline-flex min-h-11 items-center justify-center rounded-md bg-accent px-4 py-3 text-center text-[15px] text-ink hover:bg-accent-hover" href={CAL_SPRINT} target="_blank" rel="noopener noreferrer">
-                Explore the Growth Sprint
-              </a>
-            </article>
-
-            <article id="advisory" className="flex scroll-mt-28 flex-col border border-tide/40 bg-ground p-6 md:p-8">
-              <OfferArt name="advisory" />
-              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-tide">03 · Monthly · custom</p>
-              <h3 className="mt-3 font-display text-[2.1rem] leading-none">Monthly Growth Advisory</h3>
-              <p className="mt-4 font-mono text-[2.2rem] leading-none">Custom</p>
-              <p className="mt-4 text-[17px] leading-snug">Your external product growth partner.</p>
-              <ul className="mt-6 border-t border-ink/10">
-                {advisoryItems.map((item) => (
-                  <li key={item} className="border-b border-ink/10 py-2.5 text-[14px] leading-snug">{item}</li>
-                ))}
-              </ul>
-              <p className="mt-4 text-[13px] leading-snug text-mute">Advisory only. Not an implementation retainer, and not a development retainer.</p>
-              <a className="mt-6 inline-flex min-h-11 items-center justify-center rounded-md border border-ink px-4 py-3 text-center text-[15px]" href={CAL_ADVISORY} target="_blank" rel="noopener noreferrer">
-                Discuss a monthly partnership
-              </a>
-            </article>
+            {plans.map((plan) => (
+              <article
+                id={plan.id}
+                key={plan.id}
+                className={`flex scroll-mt-28 flex-col p-6 md:p-8 ${plan.recommended ? "on-graphite bg-graphite text-ground" : "border border-ink/10 bg-surface"}`}
+              >
+                {plan.id === "review" && <span id="audit" />}
+                <OfferArt name={plan.id} />
+                <p className={`font-mono text-[11px] uppercase tracking-[0.16em] ${plan.recommended ? "text-foam" : "text-mute"}`}>{plan.kicker}</p>
+                <h3 className="mt-3 font-display text-[2.1rem] leading-none">{plan.name}</h3>
+                <p className={`mt-4 font-display leading-[1.05] ${plan.priceSize === "figure" ? "text-[2.4rem]" : "text-[1.7rem]"}`}>{plan.price}</p>
+                <p className="mt-4 text-[17px] leading-snug">{plan.position}</p>
+                <ul className={`mt-6 border-t ${plan.recommended ? "border-white/15" : "border-ink/10"}`}>
+                  {plan.benefits.map((item) => (
+                    <li key={item} className={`border-b py-2.5 text-[14px] leading-snug ${plan.recommended ? "border-white/15" : "border-ink/10"}`}>{item}</li>
+                  ))}
+                </ul>
+                <p className={`mt-4 text-[13px] leading-snug ${plan.recommended ? "text-foam" : "text-mute"}`}>
+                  {plan.id === "review" && "A focused review. Not a full audit, and not an implementation."}
+                  {plan.id === "sprint" && "A strategy engagement of about seven days. Your team builds the changes."}
+                  {plan.id === "advisory" && "Ongoing guidance. Not a development retainer. No monthly price until we scope it."}
+                </p>
+                <a
+                  className={`mt-auto inline-flex min-h-11 items-center justify-center rounded-md px-4 py-3 text-center text-[15px] ${plan.recommended ? "bg-accent text-ink hover:bg-accent-hover" : plan.id === "review" ? "bg-ink text-ground" : "border border-ink"}`}
+                  href={plan.href}
+                  {...(plan.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                >
+                  {plan.cta}
+                </a>
+              </article>
+            ))}
           </div>
           <ul className="mt-8 grid gap-2 md:grid-cols-3">
             {outOfScope.map((item) => (
