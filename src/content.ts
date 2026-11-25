@@ -179,61 +179,134 @@ export const fitNo = [
   "You expect someone to implement everything without internal collaboration.",
 ];
 
-export const wins = [
+export type CaseSlug = "wizz" | "prose" | "perifit";
+
+export type CaseStudy = {
+  slug: CaseSlug;
+  name: string;
+  category: string;
+  headline: string;
+  summary: string;
+  logo: string;
+  logoClass: string;
+  figure: string;
+  figureLabel: string;
+  intro: string;
+  challenge: string;
+  investigation: string;
+  solution: string;
+  moves: string[];
+  results: string[];
+  diagram: "shift" | "flow" | "exposure";
+  image?: { src: string; alt: string; caption: string; well: string };
+  seoTitle: string;
+  seoDescription: string;
+};
+
+export const caseStudies: CaseStudy[] = [
   {
-    id: "wizz",
-    n: "01",
+    slug: "wizz",
     name: "Wizz",
+    category: "Monetization strategy",
+    headline: "Turning passive monetization into an immediate opportunity.",
+    summary: "Revenue had settled. The mechanic in the product was not giving a Gen Z audience a reason to act now.",
     logo: "/assets/wizz.png",
     logoClass: "h-8 w-auto",
-    headline: "Unlocking a new monetization opportunity.",
-    lines: [
-      "Social discovery. MRR had held near $3M for several months.",
-      "I identified and launched a monetization feature.",
-      "It became the only monetization initiative the company kept.",
-      "From October to November 2025, MRR moved from about $3M to about $4M.",
-      "$4M was the highest level the company had reached.",
+    figure: "+$1M",
+    figureLabel: "MRR",
+    intro: "Wizz is a social discovery app, built for a Gen Z audience. The business was already producing revenue. The monetization in the product was not producing a decision.",
+    challenge: "Wizz had been generating approximately $3M in MRR for several months. The mechanic already in the product was not motivating users, and it was not creating value they could feel immediately.",
+    investigation: "I started by examining monetization performance, then benchmarked competing apps for other ways to monetize. The insight that changed the work: the experience in the product was too passive for Wizz's Gen Z audience.",
+    solution: "I developed a new monetization concept built around immediacy, FOMO, and behavioral triggers. I defined the initial requirements and worked alongside the designers and developers to bring the feature to life. The published version was adapted in places. It kept the original strategic concept.",
+    moves: [],
+    results: [
+      "The feature contributed to MRR increasing from approximately $3M in October 2025 to $4M in November 2025.",
+      "It became the monetization initiative the company retained.",
+      "$4M was the highest MRR ever reached.",
     ],
-    image: "/assets/wizz-product.png",
-    imageAlt: "Wizz Infinity offer inside the app.",
-    caption: "Wizz, in the product.",
+    diagram: "shift",
+    image: {
+      src: "/assets/wizz-product.png",
+      alt: "Wizz Infinity offer inside the app.",
+      caption: "Wizz, in the product.",
+      well: "bg-[#071426]",
+    },
+    seoTitle: "Wizz app monetization case study — Helix Growth",
+    seoDescription: "A passive monetization mechanic, rebuilt around an immediate decision. MRR moved from about $3M to $4M between October and November 2025.",
   },
   {
-    id: "prose",
-    n: "02",
+    slug: "prose",
     name: "Prose",
+    category: "Onboarding optimization",
+    headline: "Building trust before asking for commitment.",
+    summary: "The onboarding asked for personal information before the product had earned it. Email capture was where people stopped.",
     logo: "/assets/prose.png",
     logoClass: "h-6 w-auto",
-    headline: "Making onboarding convert better.",
-    lines: [
-      "Personalized hair and skin, built from a questionnaire.",
-      "I worked on the onboarding experience.",
-      "The new version converted better than the previous one.",
-      "Onboarding conversion improved 34% relative to that version, validated through an A/B test.",
+    figure: "+34%",
+    figureLabel: "Onboarding conversion",
+    intro: "Prose makes personalized haircare. That product depends on what a person is willing to share. The onboarding was asking for it before the value was visible.",
+    challenge: "The original onboarding asked for personal information before it had established trust, and before it had demonstrated what the product was worth. Email capture was a significant point of friction.",
+    investigation: "Using Heap and Contentsquare, I read the onboarding journey and found where prospects were dropping off. The ask for personal information was the break, and email capture was the sharpest point of it.",
+    solution: "I coordinated the technical team through a redesign with one order of operations: communicate the value, then request the information. The sequence of screens changed so the product made its case first.",
+    moves: [
+      "Stronger copywriting.",
+      "More reasons to believe.",
+      "Onboarding screens rearranged.",
+      "Email capture moved toward the end of the experience.",
     ],
-    image: "https://i.ytimg.com/vi/l-VOLNTUVTU/hqdefault.jpg",
-    imageAlt: "Frame from the official Prose film about custom haircare and skincare.",
-    caption: "Official Prose film.",
+    results: [
+      "The new onboarding achieved a 34% relative improvement in conversion rate compared with the previous version, validated through an A/B test.",
+    ],
+    diagram: "flow",
+    seoTitle: "Prose onboarding conversion case study — Helix Growth",
+    seoDescription: "Trust before the ask. Prose onboarding conversion improved 34% relative to the previous version, validated through an A/B test.",
   },
   {
-    id: "perifit",
-    n: "03",
+    slug: "perifit",
     name: "Perifit",
+    category: "Paywall optimization",
+    headline: "Making the paywall more visible and credible.",
+    summary: "The subscription waited through several sessions. It needed to be encountered, and the value on screen needed proof.",
     logo: "/assets/perifit.png",
-    logoClass: "h-10 w-auto",
-    headline: "Turning more paywall exposure into conversions.",
-    lines: [
-      "A connected trainer. The session is a game.",
-      "I made two changes.",
-      "The existing paywall was shown more often.",
-      "Social proof was added to the value proposition already on screen.",
-      "Together, those two changes doubled paywall conversion.",
-    ],
-    image: "/assets/perifit-paywall.png",
-    imageAlt: "Unlock Perifit Premium, the paywall in the app.",
-    caption: "Perifit Premium, in the app.",
+    logoClass: "h-16 w-auto",
+    figure: "2×",
+    figureLabel: "Paywall conversion",
+    intro: "Perifit is a connected fitness product. People could spend several sessions inside it before they ever met the subscription.",
+    challenge: "Users needed to complete several product sessions before encountering the paywall. A subscription that arrives that late is one most people never get to judge.",
+    investigation: "I benchmarked comparable fitness apps. Social proof was a recurring way those products reinforce the value of a subscription, rather than a substitute for the value itself.",
+    solution: "Two changes, made together. I found additional touchpoints so the paywall was encountered more often. On the value proposition already on screen, I introduced the average customer rating and selected testimonials.",
+    moves: ["More paywall exposure, at additional touchpoints.", "Average customer rating and selected testimonials, on the existing value proposition."],
+    results: ["Paywall conversion doubled following the optimization work."],
+    diagram: "exposure",
+    image: {
+      src: "/assets/perifit-paywall.png",
+      alt: "Unlock Perifit Premium, the paywall in the app.",
+      caption: "Perifit Premium, in the app.",
+      well: "bg-[#071c18]",
+    },
+    seoTitle: "Perifit paywall optimization case study — Helix Growth",
+    seoDescription: "The Perifit paywall was shown at more touchpoints, with social proof added to the value proposition already on screen. Conversion doubled.",
   },
 ];
+
+export const relatedCases: Record<CaseSlug, { slug: CaseSlug; label: string }[]> = {
+  wizz: [
+    { slug: "prose", label: "Onboarding conversion" },
+    { slug: "perifit", label: "Paywall optimization" },
+  ],
+  prose: [
+    { slug: "wizz", label: "Monetization strategy" },
+    { slug: "perifit", label: "Conversion optimization" },
+  ],
+  perifit: [
+    { slug: "wizz", label: "Monetization strategy" },
+    { slug: "prose", label: "Onboarding conversion" },
+  ],
+};
+
+export function caseBySlug(slug: string | undefined) {
+  return caseStudies.find((item) => item.slug === slug);
+}
 
 export const dimensions = [
   { id: "onboarding", n: "01", title: "Onboarding & activation", line: "How soon a new user reaches something worth returning for." },

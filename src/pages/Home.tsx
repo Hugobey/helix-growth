@@ -41,11 +41,11 @@ export function Home() {
           <Reveal className="min-w-0">
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-tide">Mobile app growth agency</p>
             <h1 className="mt-5 font-display text-[clamp(3.4rem,6.5vw,5.7rem)] leading-[0.9]">
-              Turn more users
+              Turn your users
               <span className="block">into revenue.</span>
             </h1>
             <p className="mt-6 max-w-[40ch] text-[1.12rem] leading-relaxed">
-              We help mobile app founders unlock growth opportunities across onboarding, monetization and retention through deeper product insights, behavioral analysis and data-driven decisions.
+              We help you unlock growth opportunities across onboarding, monetization and retention through insights, behavioral analysis and data-driven decisions.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <a className="inline-flex min-h-11 items-center rounded-md bg-accent px-5 py-3 text-[15px] text-ink hover:bg-accent-hover" href={CAL} target="_blank" rel="noopener noreferrer">

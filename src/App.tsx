@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
+import { CaseArticle } from "./pages/CaseArticle";
 import { Cases } from "./pages/Cases";
 import { Home } from "./pages/Home";
 import { Method } from "./pages/Method";
@@ -44,6 +45,7 @@ export function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/case-studies" element={<Cases />} />
+        <Route path="/case-studies/:slug" element={<CaseArticle />} />
         <Route path="/methodology" element={<Method />} />
         <Route path="*" element={<Missing />} />
       </Routes>
