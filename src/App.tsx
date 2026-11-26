@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
@@ -9,6 +10,11 @@ import { Method } from "./pages/Method";
 import { Prepare } from "./pages/Prepare";
 import { Pricing } from "./pages/Pricing";
 import { Sprint } from "./pages/Sprint";
+
+function RouteAnalytics() {
+  const { pathname } = useLocation();
+  return <Analytics route={pathname} path={pathname} />;
+}
 
 function ScrollManager() {
   const { pathname, hash } = useLocation();
@@ -56,6 +62,7 @@ export function App() {
         <Route path="*" element={<Missing />} />
       </Routes>
       <Footer />
+      <RouteAnalytics />
     </>
   );
 }
