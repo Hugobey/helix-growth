@@ -280,7 +280,7 @@ html[data-style="editorial"] .wash-host-dark {
 html[data-style="editorial"] .on-graphite:not(article),
 html[data-style="editorial"] .wash-host-dark,
 html[data-style="editorial"] .signal-panel,
-html[data-style="editorial"] article.bg-graphite:not([data-plan]) {
+html[data-style="editorial"] article.bg-graphite:not([data-plan]):not(.film-card) {
   background-color: #162028;
   background-image:
     radial-gradient(ellipse at 14% 0%, rgba(255, 77, 28, 0.34), transparent 48%),
@@ -293,8 +293,8 @@ html[data-style="editorial"] .on-graphite:not(article) .text-foam,
 html[data-style="editorial"] .wash-host-dark .text-ground,
 html[data-style="editorial"] .wash-host-dark .text-foam,
 html[data-style="editorial"] .signal-panel .text-foam,
-html[data-style="editorial"] article.bg-graphite:not([data-plan]) .text-ground,
-html[data-style="editorial"] article.bg-graphite:not([data-plan]) .text-foam {
+html[data-style="editorial"] article.bg-graphite:not([data-plan]):not(.film-card) .text-ground,
+html[data-style="editorial"] article.bg-graphite:not([data-plan]):not(.film-card) .text-foam {
   color: rgba(246, 244, 240, 0.84);
 }
 
@@ -484,51 +484,9 @@ html:not([data-style="editorial"]) .editorial-wash {
   display: none;
 }
 
-html[data-style="editorial"] .film-card {
-  aspect-ratio: auto;
-  overflow: visible;
-  background: transparent;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-html[data-style="editorial"] .film-frame {
-  height: auto;
-  aspect-ratio: 9 / 16;
-  border-radius: 1.35rem;
-  box-shadow: 0 22px 50px rgba(22, 34, 44, 0.16);
-}
-
-html[data-style="editorial"] .film-shade {
-  display: none;
-}
-
-html[data-style="editorial"] .film-copy {
-  position: static;
-  padding: 1.05rem 0.1rem 0;
-  color: #161616;
-}
-
-html[data-style="editorial"] .film-copy h3,
-html[data-style="editorial"] .film-copy p {
-  color: #161616;
-}
-
-html[data-style="editorial"] .film-copy p.text-white\/85 {
-  color: #5c564f;
-}
-
-html[data-style="editorial"] .film-copy img {
-  filter: brightness(0);
-}
-
-html[data-style="editorial"] .film-copy a {
-  border-color: rgba(22, 22, 22, 0.28);
-  color: #161616;
-}
-
-html[data-style="editorial"] .film-copy a:hover {
-  background: rgba(255, 77, 28, 0.1);
+html[data-style="editorial"] .film-card .font-display {
+  font-weight: 500;
+  letter-spacing: -0.03em;
 }
 
 html[data-style="editorial"] .point-mark {
