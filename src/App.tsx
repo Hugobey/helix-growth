@@ -6,7 +6,6 @@ import { isOwnerDevice } from "./lib/device";
 import { EditorialWash } from "./components/EditorialWash";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
-import { StyleSwitch } from "./components/StyleSwitch";
 import { CaseArticle } from "./pages/CaseArticle";
 import { Cases } from "./pages/Cases";
 import { Home } from "./pages/Home";
@@ -68,7 +67,6 @@ export function App() {
         <Route path="*" element={<Missing />} />
       </Routes>
       <Footer />
-      <StyleSwitch />
       <RouteAnalytics />
     </>
   );

@@ -201,87 +201,86 @@
   }
 }
 
-/* Editorial is the second look. Current stays the default. Words do not change. */
-html[data-style="editorial"] {
+html {
   --band: 3.5rem;
   background: transparent;
   color: #161616;
 }
 
-html[data-style="editorial"] body {
+html body {
   background: transparent;
   color: #161616;
   padding-bottom: 0;
 }
 
 @media (min-width: 768px) {
-  html[data-style="editorial"] {
+  html {
     --band: 5.25rem;
   }
 }
 
-html[data-style="editorial"] .font-display {
+html .font-display {
   font-weight: 700;
   letter-spacing: -0.045em;
 }
 
-html[data-style="editorial"] .font-mono {
+html .font-mono {
   font-family: Satoshi, system-ui, sans-serif;
   font-weight: 500;
   letter-spacing: 0.14em;
 }
 
-html[data-style="editorial"] .section-pad,
-html[data-style="editorial"] main > header > .mx-auto,
-html[data-style="editorial"] main > section > .mx-auto,
-html[data-style="editorial"] main > section.mx-auto,
-html[data-style="editorial"] .on-graphite > .mx-auto,
-html[data-style="editorial"] .wash-host-dark > .mx-auto,
-html[data-style="editorial"] article > section.border-t,
-html[data-style="editorial"] footer > .mx-auto:first-child {
+html .section-pad,
+html main > header > .mx-auto,
+html main > section > .mx-auto,
+html main > section.mx-auto,
+html .on-graphite > .mx-auto,
+html .wash-host-dark > .mx-auto,
+html article > section.border-t,
+html footer > .mx-auto:first-child {
   padding-top: var(--band);
   padding-bottom: var(--band);
 }
 
-html[data-style="editorial"] .bg-ground,
-html[data-style="editorial"] .bg-ground\/90 {
+html .bg-ground,
+html .bg-ground\/90 {
   background-color: rgba(246, 244, 240, 0.78);
 }
 
-html[data-style="editorial"] .bg-surface {
+html .bg-surface {
   background-color: rgba(255, 255, 255, 0.84);
 }
 
-html[data-style="editorial"] .text-mute {
+html .text-mute {
   color: #5c564f;
 }
 
-html[data-style="editorial"] .text-tide {
+html .text-tide {
   color: #3e6d88;
 }
 
-html[data-style="editorial"] #plans article:not([data-plan="review"]) .text-foam,
-html[data-style="editorial"] #engagements article:not([data-plan="review"]) .text-foam {
+html #plans article:not([data-plan="review"]) .text-foam,
+html #engagements article:not([data-plan="review"]) .text-foam {
   color: #5c564f;
 }
 
-html[data-style="editorial"] .decor,
-html[data-style="editorial"] .hero-aside,
-html[data-style="editorial"] .node-field,
-html[data-style="editorial"] .node-field-dark {
+html .decor,
+html .hero-aside,
+html .node-field,
+html .node-field-dark {
   display: none;
 }
 
-html[data-style="editorial"] .wash-host,
-html[data-style="editorial"] .wash-host-dark {
+html .wash-host,
+html .wash-host-dark {
   background-color: transparent;
   background-image: none;
 }
 
-html[data-style="editorial"] .on-graphite:not(article),
-html[data-style="editorial"] .wash-host-dark,
-html[data-style="editorial"] .signal-panel,
-html[data-style="editorial"] article.bg-graphite:not([data-plan]):not(.film-card) {
+html .on-graphite:not(article),
+html .wash-host-dark,
+html .signal-panel,
+html article.bg-graphite:not([data-plan]):not(.film-card) {
   background-color: #162028;
   background-image:
     radial-gradient(ellipse at 14% 0%, rgba(255, 77, 28, 0.34), transparent 48%),
@@ -289,34 +288,34 @@ html[data-style="editorial"] article.bg-graphite:not([data-plan]):not(.film-card
   color: #f6f4f0;
 }
 
-html[data-style="editorial"] .on-graphite:not(article) .text-ground,
-html[data-style="editorial"] .on-graphite:not(article) .text-foam,
-html[data-style="editorial"] .wash-host-dark .text-ground,
-html[data-style="editorial"] .wash-host-dark .text-foam,
-html[data-style="editorial"] .signal-panel .text-foam,
-html[data-style="editorial"] article.bg-graphite:not([data-plan]):not(.film-card) .text-ground,
-html[data-style="editorial"] article.bg-graphite:not([data-plan]):not(.film-card) .text-foam {
+html .on-graphite:not(article) .text-ground,
+html .on-graphite:not(article) .text-foam,
+html .wash-host-dark .text-ground,
+html .wash-host-dark .text-foam,
+html .signal-panel .text-foam,
+html article.bg-graphite:not([data-plan]):not(.film-card) .text-ground,
+html article.bg-graphite:not([data-plan]):not(.film-card) .text-foam {
   color: rgba(246, 244, 240, 0.84);
 }
 
-html[data-style="editorial"] .on-graphite:not(article) .text-accent,
-html[data-style="editorial"] .wash-host-dark .text-accent {
+html .on-graphite:not(article) .text-accent,
+html .wash-host-dark .text-accent {
   color: #ff7340;
 }
 
-html[data-style="editorial"] .border-t-4 {
+html .border-t-4 {
   border-top-width: 1px;
 }
 
-html[data-style="editorial"] .border-accent {
+html .border-accent {
   border-color: #ff4d1c;
 }
 
-html[data-style="editorial"] .border-tide {
+html .border-tide {
   border-color: #3e6d88;
 }
 
-html[data-style="editorial"] header.site-header {
+html header.site-header {
   position: fixed;
   inset: 0 0 auto 0;
   background-color: rgba(246, 244, 240, 0.82);
@@ -326,41 +325,41 @@ html[data-style="editorial"] header.site-header {
   transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-html[data-style="editorial"] header.site-header[data-hidden="true"] {
+html header.site-header[data-hidden="true"] {
   transform: translateY(-100%);
   pointer-events: none;
   transition-duration: 140ms;
 }
 
-html[data-style="editorial"] main {
+html main {
   padding-top: 72px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html[data-style="editorial"] header.site-header {
+  html header.site-header {
     transition: none;
   }
 }
 
-html[data-style="editorial"] .brand-mark {
+html .brand-mark {
   width: 1.15rem;
   height: 1.15rem;
 }
 
-html[data-style="editorial"] .brand-name {
+html .brand-name {
   font-family: Satoshi, system-ui, sans-serif;
   font-weight: 600;
   font-size: 1.02rem;
   letter-spacing: -0.03em;
 }
 
-html[data-style="editorial"] header nav a[aria-current="page"] {
+html header nav a[aria-current="page"] {
   outline: 1.5px solid #e4572e;
   outline-offset: 7px;
 }
 
-html[data-style="editorial"] a.bg-accent,
-html[data-style="editorial"] a.bg-ink {
+html a.bg-accent,
+html a.bg-ink {
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
@@ -372,8 +371,8 @@ html[data-style="editorial"] a.bg-ink {
   font-weight: 500;
 }
 
-html[data-style="editorial"] a.bg-accent::after,
-html[data-style="editorial"] a.bg-ink::after {
+html a.bg-accent::after,
+html a.bg-ink::after {
   content: "→";
   display: grid;
   place-items: center;
@@ -386,12 +385,12 @@ html[data-style="editorial"] a.bg-ink::after {
   line-height: 1;
 }
 
-html[data-style="editorial"] a.bg-accent:hover,
-html[data-style="editorial"] a.bg-ink:hover {
+html a.bg-accent:hover,
+html a.bg-ink:hover {
   background: #000;
 }
 
-html[data-style="editorial"] a.border.border-ink {
+html a.border.border-ink {
   width: fit-content;
   justify-content: flex-start;
   border: 0;
@@ -404,8 +403,8 @@ html[data-style="editorial"] a.border.border-ink {
   text-underline-offset: 4px;
 }
 
-html[data-style="editorial"] #plans article,
-html[data-style="editorial"] #engagements article {
+html #plans article,
+html #engagements article {
   border: 0;
   border-radius: 2px;
   background: #fff;
@@ -414,8 +413,8 @@ html[data-style="editorial"] #engagements article {
   order: 0;
 }
 
-html[data-style="editorial"] #plans article[data-plan="review"],
-html[data-style="editorial"] #engagements article[data-plan="review"] {
+html #plans article[data-plan="review"],
+html #engagements article[data-plan="review"] {
   background:
     radial-gradient(ellipse at 100% 0%, rgba(255, 77, 28, 0.38), transparent 46%),
     #141414;
@@ -423,30 +422,30 @@ html[data-style="editorial"] #engagements article[data-plan="review"] {
   box-shadow: none;
 }
 
-html[data-style="editorial"] #plans article[data-plan="review"] .text-mute,
-html[data-style="editorial"] #plans article[data-plan="review"] .text-tide,
-html[data-style="editorial"] #plans article[data-plan="review"] .text-foam,
-html[data-style="editorial"] #engagements article[data-plan="review"] .text-mute,
-html[data-style="editorial"] #engagements article[data-plan="review"] .text-tide,
-html[data-style="editorial"] #engagements article[data-plan="review"] .text-foam {
+html #plans article[data-plan="review"] .text-mute,
+html #plans article[data-plan="review"] .text-tide,
+html #plans article[data-plan="review"] .text-foam,
+html #engagements article[data-plan="review"] .text-mute,
+html #engagements article[data-plan="review"] .text-tide,
+html #engagements article[data-plan="review"] .text-foam {
   color: rgba(255, 255, 255, 0.72);
 }
 
-html[data-style="editorial"] #plans article[data-plan="review"] .border-ink\/10,
-html[data-style="editorial"] #plans article[data-plan="review"] .border-white\/15,
-html[data-style="editorial"] #engagements article[data-plan="review"] .border-ink\/10,
-html[data-style="editorial"] #engagements article[data-plan="review"] .border-white\/15 {
+html #plans article[data-plan="review"] .border-ink\/10,
+html #plans article[data-plan="review"] .border-white\/15,
+html #engagements article[data-plan="review"] .border-ink\/10,
+html #engagements article[data-plan="review"] .border-white\/15 {
   border-color: rgba(255, 255, 255, 0.16);
 }
 
-html[data-style="editorial"] article[data-plan="review"] a.bg-ink,
-html[data-style="editorial"] article[data-plan="review"] a.bg-accent {
+html article[data-plan="review"] a.bg-ink,
+html article[data-plan="review"] a.bg-accent {
   background: #fff;
   color: #141414;
 }
 
-html[data-style="editorial"] article[data-plan="sprint"] a.bg-accent,
-html[data-style="editorial"] article[data-plan="advisory"] a {
+html article[data-plan="sprint"] a.bg-accent,
+html article[data-plan="advisory"] a {
   display: inline;
   gap: 0;
   width: fit-content;
@@ -461,8 +460,8 @@ html[data-style="editorial"] article[data-plan="advisory"] a {
   text-underline-offset: 5px;
 }
 
-html[data-style="editorial"] article[data-plan="sprint"] a.bg-accent::after,
-html[data-style="editorial"] article[data-plan="advisory"] a::after {
+html article[data-plan="sprint"] a.bg-accent::after,
+html article[data-plan="advisory"] a::after {
   content: " →";
   display: inline;
   width: auto;
@@ -473,12 +472,12 @@ html[data-style="editorial"] article[data-plan="advisory"] a::after {
   font-size: 1rem;
 }
 
-html[data-style="editorial"] #top .grid {
+html #top .grid {
   grid-template-columns: minmax(0, 46rem);
 }
 
-html[data-style="editorial"] main,
-html[data-style="editorial"] footer {
+html main,
+html footer {
   position: relative;
   z-index: 1;
 }
@@ -492,87 +491,40 @@ html[data-style="editorial"] footer {
   pointer-events: none;
 }
 
-html:not([data-style="editorial"]) .editorial-wash {
-  display: none;
-}
-
-html[data-style="editorial"] .film-card .font-display {
+html .film-card .font-display {
   font-weight: 500;
   letter-spacing: -0.03em;
 }
 
-html[data-style="editorial"] .point-mark {
+html .point-mark {
   background: rgba(255, 77, 28, 0.12);
   color: #ff4d1c;
 }
 
 @media (min-width: 900px) {
-  html[data-style="editorial"] .editorial-lead {
+  html .editorial-lead {
     display: grid;
     grid-template-columns: minmax(0, 1.45fr) minmax(16rem, 0.7fr);
     column-gap: 3rem;
     align-items: end;
   }
 
-  html[data-style="editorial"] .editorial-lead > :first-child {
+  html .editorial-lead > :first-child {
     grid-column: 1;
   }
 
-  html[data-style="editorial"] .editorial-lead > h1,
-  html[data-style="editorial"] .editorial-lead > h2 {
+  html .editorial-lead > h1,
+  html .editorial-lead > h2 {
     grid-column: 1;
     grid-row: 2;
     margin-top: 0.8rem;
   }
 
-  html[data-style="editorial"] .editorial-lead > :last-child {
+  html .editorial-lead > :last-child {
     grid-column: 2;
     grid-row: 2;
     margin-top: 0;
   }
 }
 
-.style-switch {
-  position: fixed;
-  z-index: 70;
-  right: 1rem;
-  bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.3rem 0.3rem 0.3rem 0.85rem;
-  border: 1px solid rgba(22, 22, 22, 0.12);
-  border-radius: 999px;
-  background: #fff;
-  color: #161616;
-  box-shadow: 0 12px 32px rgba(22, 22, 22, 0.14);
-  font-family: Satoshi, system-ui, sans-serif;
-  font-size: 13px;
-}
 
-.style-switch-label {
-  margin-right: 0.35rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-size: 11px;
-  color: #6a655f;
-}
-
-.style-switch button {
-  min-height: 2rem;
-  border: 0;
-  border-radius: 999px;
-  background: transparent;
-  padding: 0.25rem 0.8rem;
-  color: #161616;
-  cursor: pointer;
-}
-
-.style-switch button[aria-pressed="true"] {
-  background: #161616;
-  color: #fff;
-}
-
-body {
-  padding-bottom: 4.75rem;
-}

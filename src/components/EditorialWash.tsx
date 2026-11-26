@@ -1,9 +1,6 @@
 import { useEffect, useRef } from "react";
 
-/**
- * Pointer-following color field for the editorial look.
- * Hidden unless that look is active, so the current look is unchanged.
- */
+/** Pointer-following color field behind the page. */
 export function EditorialWash() {
   const ref = useRef<HTMLCanvasElement>(null);
 
@@ -22,7 +19,6 @@ export function EditorialWash() {
     };
 
     const draw = (time: number) => {
-      if (document.documentElement.dataset.style !== "editorial") return;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const w = window.innerWidth;
       const h = window.innerHeight;
@@ -82,8 +78,7 @@ export function EditorialWash() {
     };
 
     const sync = () => {
-      const editorial = document.documentElement.dataset.style === "editorial";
-      const animate = editorial && !reduce.matches;
+      const animate = !reduce.matches;
       if (animate && !running) {
         running = true;
         frame = window.requestAnimationFrame(tick);
@@ -93,15 +88,13 @@ export function EditorialWash() {
         running = false;
         window.cancelAnimationFrame(frame);
       }
-      if (editorial) draw(0);
+      draw(0);
     };
 
     sync();
     window.addEventListener("pointermove", onMove, { passive: true });
     window.addEventListener("resize", sync);
     reduce.addEventListener("change", sync);
-    const observer = new MutationObserver(sync);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-style"] });
 
     return () => {
       running = false;
@@ -109,7 +102,6 @@ export function EditorialWash() {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("resize", sync);
       reduce.removeEventListener("change", sync);
-      observer.disconnect();
     };
   }, []);
 

@@ -46,14 +46,12 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    const root = document.documentElement;
     let last = window.scrollY;
-    const editorial = () => root.dataset.style === "editorial";
     const onScroll = () => {
       const y = window.scrollY;
       const delta = y - last;
       last = y;
-      if (!editorial() || open) {
+      if (open) {
         setHidden(false);
         return;
       }
@@ -61,17 +59,8 @@ export function Header() {
       else if (delta > 8) setHidden(true);
       else if (delta < -8) setHidden(false);
     };
-    const onStyle = () => {
-      if (!editorial()) setHidden(false);
-    };
-    onStyle();
     window.addEventListener("scroll", onScroll, { passive: true });
-    const observer = new MutationObserver(onStyle);
-    observer.observe(root, { attributes: true, attributeFilter: ["data-style"] });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      observer.disconnect();
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, [open]);
 
   useEffect(() => {
