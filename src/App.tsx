@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
+import { filterAnalyticsEvent, shouldRecordAnalytics } from "./lib/analytics";
+import { isOwnerDevice } from "./lib/device";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { CaseArticle } from "./pages/CaseArticle";
@@ -13,7 +15,8 @@ import { Sprint } from "./pages/Sprint";
 
 function RouteAnalytics() {
   const { pathname } = useLocation();
-  return <Analytics route={pathname} path={pathname} />;
+  if (!shouldRecordAnalytics(window.location.hostname, isOwnerDevice())) return null;
+  return <Analytics route={pathname} path={pathname} beforeSend={filterAnalyticsEvent} />;
 }
 
 function ScrollManager() {
