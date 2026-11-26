@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { CAL } from "../content";
@@ -21,6 +21,8 @@ function currentLink(href: string, pathname: string) {
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
   const { pathname } = useLocation();
 
@@ -43,8 +45,48 @@ export function Header() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    let last = window.scrollY;
+    const editorial = () => root.dataset.style === "editorial";
+    const onScroll = () => {
+      const y = window.scrollY;
+      const delta = y - last;
+      last = y;
+      if (!editorial() || open) {
+        setHidden(false);
+        return;
+      }
+      if (y < 64) setHidden(false);
+      else if (delta > 8) setHidden(true);
+      else if (delta < -8) setHidden(false);
+    };
+    const onStyle = () => {
+      if (!editorial()) setHidden(false);
+    };
+    onStyle();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    const observer = new MutationObserver(onStyle);
+    observer.observe(root, { attributes: true, attributeFilter: ["data-style"] });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      observer.disconnect();
+    };
+  }, [open]);
+
+  useEffect(() => {
+    const node = headerRef.current;
+    if (!node) return;
+    if (hidden) node.setAttribute("inert", "");
+    else node.removeAttribute("inert");
+  }, [hidden]);
+
   return (
-    <header className="sticky top-0 z-40 border-b border-ink/10 bg-ground/90 backdrop-blur-md">
+    <header
+      ref={headerRef}
+      data-hidden={hidden ? "true" : undefined}
+      className="site-header sticky top-0 z-40 border-b border-ink/10 bg-ground/90 backdrop-blur-md"
+    >
       <div className="mx-auto flex h-[72px] max-w-page items-center gap-6 px-6 md:px-10">
         <Brand to="/" />
         <nav className="ml-auto hidden items-center gap-6 text-[15px] md:flex" aria-label="Primary">

@@ -1,54 +1,23 @@
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { CAL } from "../content";
-import { BeyondDashboard } from "../components/method/BeyondDashboard";
-import { InsightPath } from "../components/method/InsightPath";
-import { JourneyCarousel } from "../components/method/JourneyCarousel";
-import { RevenueSim } from "../components/method/RevenueSim";
 import { HelixMark, StrandField } from "../components/Helix";
-import { iconForLine, PointIcon } from "../components/PointIcon";
 import { Reveal } from "../components/Reveal";
 import { usePageMeta } from "../lib/meta";
 
-const subnav = [
-  ["dashboard", "Dashboard"],
-  ["journey", "Journey"],
-  ["impact", "Impact"],
-  ["decision", "Decision"],
-  ["tools", "Tools"],
+const where = [
+  ["First screen", "Did they understand the product before they started?"],
+  ["The steps", "Which one asks for effort before it has earned it?"],
+  ["First use", "Did they reach a result, or only finish a form?"],
+  ["The offer", "Was it shown before they had a reason to pay?"],
+  ["Coming back", "Is there a reason to return, or only a reason to subscribe once?"],
 ] as const;
 
-const moves = [
-  {
-    n: "01",
-    title: "Measure what happened.",
-    body: "A funnel, a rate, a count. This is the dashboard. It starts the read. It is not the decision.",
-  },
-  {
-    n: "02",
-    title: "Understand why it happened.",
-    body: "Time, behavior, segment, and what the screen is asking. A different signal can change what the same rate means.",
-  },
-  {
-    n: "03",
-    title: "Identify what should change.",
-    body: "A hypothesis about the product: the sequence, the promise, or the moment of the offer. One change, aimed at the evidence.",
-  },
-  {
-    n: "04",
-    title: "Measure the business impact.",
-    body: "Did paying users and revenue move, or only a rate along the way? A test answers that. The dashboard does not.",
-  },
-];
-
-const tools = [
-  { name: "Amplitude", logo: "", line: "Funnels, cohorts, and what people do after a screen." },
-  { name: "RevenueCat", logo: "/assets/tools/revenuecat.svg", line: "Trials, renewals, and revenue, when the product is a subscription." },
-  { name: "PostHog", logo: "/assets/tools/posthog.svg", line: "Product analytics and replay, when that question needs a tool added. Not a requirement for every app." },
-  { name: "Mixpanel", logo: "/assets/tools/mixpanel.svg", line: "Events and funnels, and how a flow is actually used." },
-  { name: "Heap", logo: "", line: "What people did, including interactions that were never planned as events." },
-  { name: "Contentsquare", logo: "", line: "Where attention goes on a screen, and where a session breaks down." },
-];
+const business = [
+  ["01", "The rate", "Did the step we changed actually move?"],
+  ["02", "Paying users", "Did more people start paying, or did a middle step get easier?"],
+  ["03", "Revenue", "Did price, conversion, and renewal land in a different sum?"],
+] as const;
 
 const pageLd = {
   "@context": "https://schema.org",
@@ -67,45 +36,8 @@ export function Method() {
     jsonLd,
   );
 
-  useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const links = [...document.querySelectorAll<HTMLAnchorElement>("[data-subnav] a")];
-    const nodes = links
-      .map((link) => ({ link, node: document.getElementById(link.getAttribute("href")!.slice(1)) }))
-      .filter((item): item is { link: HTMLAnchorElement; node: HTMLElement } => Boolean(item.node));
-    const wrap = document.querySelector<HTMLElement>("[data-subnav]");
-    const mark = () => {
-      const line = Math.min(380, window.innerHeight * 0.42);
-      let current = nodes[0];
-      nodes.forEach((item) => {
-        if (item.node.getBoundingClientRect().top <= line) current = item;
-      });
-      links.forEach((link) => link.removeAttribute("aria-current"));
-      if (!current || !wrap) return;
-      current.link.setAttribute("aria-current", "true");
-      const left = current.link.offsetLeft;
-      const right = left + current.link.offsetWidth;
-      if (left < wrap.scrollLeft + 8 || right > wrap.scrollLeft + wrap.clientWidth - 8) {
-        wrap.scrollTo({ left: Math.max(0, left - 16), behavior: reduceMotion ? "auto" : "smooth" });
-      }
-    };
-    mark();
-    window.addEventListener("scroll", mark, { passive: true });
-    return () => window.removeEventListener("scroll", mark);
-  }, []);
-
   return (
     <main id="main">
-      <nav className="sticky top-[72px] z-30 border-b border-ink/10 bg-ground" aria-label="On this page" data-subnav>
-        <div className="mx-auto flex max-w-page gap-6 overflow-x-auto px-6 py-3 text-[14px] md:px-10">
-          {subnav.map(([id, label]) => (
-            <a key={id} href={`#${id}`} className="shrink-0 text-mute underline-offset-8 aria-[current=true]:text-ink aria-[current=true]:underline">
-              {label}
-            </a>
-          ))}
-        </div>
-      </nav>
-
       <header className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-36 overflow-hidden md:h-48" aria-hidden="true">
           <StrandField />
@@ -123,118 +55,95 @@ export function Method() {
         </div>
       </header>
 
-      <section className="mx-auto max-w-page px-6 pb-4 md:px-10" aria-label="From a measurement to a decision">
-        <ol className="grid gap-px bg-ink/10 sm:grid-cols-2 lg:grid-cols-4">
-          {moves.map((item) => (
-            <li key={item.n} className="bg-ground p-5">
-              <div className="flex items-center gap-3">
-                <span className="point-mark grid h-10 w-10 place-items-center rounded-xl bg-[rgba(255,77,28,0.12)] text-[#FF4D1C]">
-                  <PointIcon name={iconForLine(item.title)} />
-                </span>
-                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-tide">{item.n}</p>
+      <section className="border-t border-ink/10" aria-labelledby="rate-title">
+        <div className="mx-auto max-w-page px-6 section-pad md:px-10">
+          <Reveal>
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-tide">The rate</p>
+            <h2 id="rate-title" className="mt-4 max-w-[16ch] font-display text-[clamp(2.2rem,4.4vw,3.6rem)] leading-[0.96]">
+              You already know what happened.
+            </h2>
+            <p className="mt-5 max-w-[40rem] text-[1.05rem] leading-relaxed">
+              A funnel gives you a rate. It does not tell you whether the screen is unclear, too early, or doing its job. Those are different changes.
+            </p>
+          </Reveal>
+          <figure className="mt-10">
+            <div className="border-t border-ink/10 pt-6">
+              <p className="font-display text-[clamp(3.2rem,6vw,5rem)] leading-none">31%</p>
+              <p className="mt-3 max-w-[36rem] text-[1.05rem] leading-relaxed">
+                reach a first result. One thousand people open a subscription app. Three hundred and ten get there. The rate does not move. The decision still can.
+              </p>
+            </div>
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              <div className="border border-ink/10 bg-surface p-5 md:p-6">
+                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-tide">What the dashboard answers</p>
+                <h3 className="mt-3 font-display text-[1.7rem] leading-none">Change the email screen.</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-mute">
+                  The step looks weak, so the screen must be the problem.
+                </p>
               </div>
-              <h3 className="mt-3 font-display text-[1.45rem] leading-[1.1]">{item.title}</h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-mute">{item.body}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section id="dashboard" className="scroll-mt-[118px] border-t border-ink/10">
-        <div className="mx-auto max-w-page px-6 section-pad md:px-10">
-          <Reveal>
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-tide">The difference</p>
-            <h2 className="mt-4 max-w-[16ch] font-display text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.96]">
-              Look beyond the dashboard.
-            </h2>
-            <p className="mt-5 max-w-[44rem] text-[1.05rem] leading-relaxed">
-              We don't simply look at conversion rates and recommend changing screens. We combine quantitative data, behavioral signals, segmentation and product experience to understand what is really happening.
-            </p>
-            <p className="mt-4 max-w-[44rem] text-[15px] leading-relaxed text-mute">
-              The onboarding below is fictional. One thousand people open a subscription app. Three hundred and ten reach a first result. The rate stays 31%. The interpretation does not.
-            </p>
-          </Reveal>
-          <div className="mt-12">
-            <BeyondDashboard />
-          </div>
+              <div className="border border-ink/10 bg-surface p-5 md:p-6">
+                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-tide">The question under it</p>
+                <h3 className="mt-3 font-display text-[1.7rem] leading-none">Move the ask.</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-mute">
+                  People leave in a few seconds, before the product has shown its value. The screen may be early, not broken.
+                </p>
+              </div>
+            </div>
+            <figcaption className="mt-4 max-w-[42rem] text-[14px] leading-relaxed text-mute">
+              Illustrative. Not a client.{" "}
+              <Link className="underline decoration-ink/30 underline-offset-4" to="/case-studies/prose">
+                The Prose case
+              </Link>{" "}
+              is a tested onboarding sequence. It is not this example.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
-      <section id="journey" className="scroll-mt-[118px] border-t border-ink/10 bg-surface">
+      <section className="border-t border-ink/10 bg-surface" aria-labelledby="where-title">
         <div className="mx-auto max-w-page px-6 section-pad md:px-10">
           <Reveal>
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-tide">The product, end to end</p>
-            <h2 className="mt-4 max-w-[16ch] font-display text-[clamp(2.2rem,4.4vw,3.6rem)] leading-[0.96]">
-              Understand the entire user journey.
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-tide">Where to look</p>
+            <h2 id="where-title" className="mt-4 max-w-[18ch] font-display text-[clamp(2.2rem,4.4vw,3.6rem)] leading-[0.96]">
+              You know where people leave. Not which question to ask.
             </h2>
             <p className="mt-5 max-w-[40rem] text-[1.05rem] leading-relaxed">
-              A conversion rate sits inside a longer story. The first screen, the setup, the first real use, the offer, and the reason to come back are different questions.
+              A drop-off is a location. The decision depends on what that screen was asking them to do.
             </p>
           </Reveal>
-          <div className="mt-10">
-            <JourneyCarousel />
-          </div>
-        </div>
-      </section>
-
-      <section id="impact" className="scroll-mt-[118px] border-t border-ink/10">
-        <div className="mx-auto max-w-page px-6 section-pad md:px-10">
-          <Reveal>
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-tide">Business impact</p>
-            <h2 className="mt-4 max-w-[18ch] font-display text-[clamp(2.2rem,4.4vw,3.6rem)] leading-[0.96]">
-              Connect behavior to business impact.
-            </h2>
-            <p className="mt-5 max-w-[42rem] text-[1.05rem] leading-relaxed">
-              A higher rate is not yet a business. Price, conversion, and renewal have to land in the same sum before a change is worth shipping.
-            </p>
-          </Reveal>
-          <div className="mt-10">
-            <RevenueSim />
-          </div>
-        </div>
-      </section>
-
-      <section id="decision" className="scroll-mt-[118px] border-t border-ink/10">
-        <div className="mx-auto max-w-page px-6 section-pad md:px-10">
-          <Reveal>
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-tide">What we hand back</p>
-            <h2 className="mt-4 max-w-[16ch] font-display text-[clamp(2.2rem,4.4vw,3.6rem)] leading-[0.96]">
-              From insight to action.
-            </h2>
-            <p className="mt-5 max-w-[40rem] text-[1.05rem] leading-relaxed">
-              The email screen in the fictional onboarding is the example. The same shape applies to a live product.
-            </p>
-          </Reveal>
-          <div className="mt-10">
-            <InsightPath />
-          </div>
-        </div>
-      </section>
-
-      <section id="tools" className="scroll-mt-[118px] border-t border-ink/10 bg-surface">
-        <div className="mx-auto max-w-page px-6 section-pad md:px-10">
-          <Reveal>
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-tide">Instrumentation</p>
-            <h2 className="mt-4 max-w-[16ch] font-display text-[clamp(2.2rem,4.4vw,3.6rem)] leading-[0.96]">
-              The tool follows the question.
-            </h2>
-            <p className="mt-5 max-w-[42rem] text-[1.05rem] leading-relaxed">
-              Amplitude, RevenueCat, PostHog, Mixpanel, Heap, and Contentsquare can support an investigation. None of them is a requirement. The right instrumentation depends on the app, the business model, and the question being asked.
-            </p>
-          </Reveal>
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {tools.map((tool) => (
-              <li key={tool.name} className="border-t border-ink/15 bg-ground p-5">
-                <div className="flex items-center gap-3">
-                  {tool.logo ? <img src={tool.logo} alt="" className="h-6 w-6" /> : null}
-                  <h3 className="font-display text-[1.45rem] leading-none">{tool.name}</h3>
-                </div>
-                <p className="mt-3 text-[15px] leading-relaxed text-mute">{tool.line}</p>
+          <ol className="mt-10 border-t border-ink/10">
+            {where.map(([place, question], index) => (
+              <li key={place} className="grid gap-2 border-b border-ink/10 py-5 md:grid-cols-[9rem_1fr] md:items-baseline md:gap-8">
+                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-tide">0{index + 1} · {place}</p>
+                <p className="font-display text-[clamp(1.45rem,2vw,1.85rem)] leading-[1.15]">{question}</p>
               </li>
             ))}
-          </ul>
+          </ol>
+        </div>
+      </section>
+
+      <section className="border-t border-ink/10" aria-labelledby="business-title">
+        <div className="mx-auto max-w-page px-6 section-pad md:px-10">
+          <Reveal>
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-tide">The business</p>
+            <h2 id="business-title" className="mt-4 max-w-[16ch] font-display text-[clamp(2.2rem,4.4vw,3.6rem)] leading-[0.96]">
+              A better rate is not yet a better business.
+            </h2>
+            <p className="mt-5 max-w-[42rem] text-[1.05rem] leading-relaxed">
+              A test can move a step and leave revenue where it was. Before a change is worth shipping, three things have to be read together.
+            </p>
+          </Reveal>
+          <ol className="mt-10 grid gap-px bg-ink/10 md:grid-cols-3">
+            {business.map(([n, title, body]) => (
+              <li key={n} className="bg-ground p-5 md:p-6">
+                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-tide">{n}</p>
+                <h3 className="mt-3 font-display text-[1.7rem] leading-none">{title}</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-mute">{body}</p>
+              </li>
+            ))}
+          </ol>
           <p className="mt-8 max-w-[42rem] text-[15px] leading-relaxed text-mute">
-            An app that already trusts a stack does not need a new one for its own sake. PostHog can be installed or configured when the question needs it. It is not assumed for every client, and instrumentation is not part of every engagement.
+            Amplitude, RevenueCat, PostHog, Mixpanel, Heap, and Contentsquare can support a question. None of them is a requirement. The right read depends on the app and the business model, and instrumentation is not part of every engagement.
           </p>
         </div>
       </section>
