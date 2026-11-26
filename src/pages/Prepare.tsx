@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { AUDIT_MAIL, prepareItems } from "../content";
 import { StrandField } from "../components/Helix";
+import { iconForLine, PointIcon } from "../components/PointIcon";
 import { Reveal } from "../components/Reveal";
 import { usePageMeta } from "../lib/meta";
 
@@ -53,8 +54,13 @@ export function Prepare() {
         </p>
         <ol className="mt-10 max-w-[46rem] border-t border-ink/10">
           {prepareItems.map((item, index) => (
-            <li key={item.title} className="grid gap-3 border-b border-ink/10 py-6 sm:grid-cols-[4.5rem_1fr] sm:gap-6">
-              <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-tide">0{index + 1}</span>
+            <li key={item.title} className="grid gap-3 border-b border-ink/10 py-6 sm:grid-cols-[7.5rem_1fr] sm:gap-6">
+              <span className="flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.14em] text-tide">
+                <span className="point-mark grid h-10 w-10 place-items-center rounded-xl bg-[rgba(255,77,28,0.12)] text-[#FF4D1C]">
+                  <PointIcon name={iconForLine(item.title)} />
+                </span>
+                0{index + 1}
+              </span>
               <div>
                 <h3 className="font-display text-[1.7rem] leading-none">{item.title}</h3>
                 <p className="mt-3 text-[16px] leading-relaxed">{item.why}</p>

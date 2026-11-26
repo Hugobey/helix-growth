@@ -6,6 +6,7 @@ import { InsightPath } from "../components/method/InsightPath";
 import { JourneyCarousel } from "../components/method/JourneyCarousel";
 import { RevenueSim } from "../components/method/RevenueSim";
 import { HelixMark, StrandField } from "../components/Helix";
+import { iconForLine, PointIcon } from "../components/PointIcon";
 import { Reveal } from "../components/Reveal";
 import { usePageMeta } from "../lib/meta";
 
@@ -126,7 +127,12 @@ export function Method() {
         <ol className="grid gap-px bg-ink/10 sm:grid-cols-2 lg:grid-cols-4">
           {moves.map((item) => (
             <li key={item.n} className="bg-ground p-5">
-              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-tide">{item.n}</p>
+              <div className="flex items-center gap-3">
+                <span className="point-mark grid h-10 w-10 place-items-center rounded-xl bg-[rgba(255,77,28,0.12)] text-[#FF4D1C]">
+                  <PointIcon name={iconForLine(item.title)} />
+                </span>
+                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-tide">{item.n}</p>
+              </div>
               <h3 className="mt-3 font-display text-[1.45rem] leading-[1.1]">{item.title}</h3>
               <p className="mt-3 text-[15px] leading-relaxed text-mute">{item.body}</p>
             </li>

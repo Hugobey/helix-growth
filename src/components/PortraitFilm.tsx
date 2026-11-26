@@ -28,7 +28,6 @@ export function PortraitFilm({
   const reduce = useReducedMotion();
   const [src, setSrc] = useState<string | null>(null);
   const [failed, setFailed] = useState(false);
-  const [playing, setPlaying] = useState(false);
   const [posterFailed, setPosterFailed] = useState(false);
 
   useEffect(() => {
@@ -38,10 +37,7 @@ export function PortraitFilm({
       const raw = typeof event.data === "string" ? event.data : JSON.stringify(event.data ?? "");
       if (origin.endsWith("tiktok.com")) {
         if (/errorCode|onPlayerError|"type":"error"|unavailable/i.test(raw)) setFailed(true);
-        const time = raw.match(/"currentTime":(\d+(?:\.\d+)?)/);
-        if (time && Number(time[1]) > 0.4) setPlaying(true);
       }
-      if (origin.includes("youtube") && /"playerState":1\b/.test(raw)) setPlaying(true);
     };
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
@@ -74,7 +70,7 @@ export function PortraitFilm({
   const frameClass =
     crop === "landscape"
       ? "absolute left-1/2 -top-[12%] h-[128%] w-[405%] max-w-none -translate-x-1/2 border-0"
-      : "absolute -top-16 h-[calc(100%+4rem)] w-full border-0";
+      : "absolute inset-0 z-[2] h-full w-full border-0";
 
   return (
     <div ref={ref} className="film-media absolute inset-0 bg-graphite" aria-hidden="true">
@@ -98,7 +94,7 @@ export function PortraitFilm({
           ref={frame}
           title={title}
           src={src}
-          className={`${frameClass} pointer-events-none transition-opacity duration-700 ${playing ? "opacity-100" : "opacity-0"}`}
+          className={`${frameClass} pointer-events-none opacity-100`}
           loading="lazy"
           tabIndex={-1}
           allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture"

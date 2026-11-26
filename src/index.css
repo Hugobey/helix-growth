@@ -203,13 +203,20 @@
 
 /* Editorial is the second look. Current stays the default. Words do not change. */
 html[data-style="editorial"] {
-  background: #f6f4f0;
+  --band: 3.5rem;
+  background: transparent;
   color: #161616;
 }
 
 html[data-style="editorial"] body {
-  background: #f6f4f0;
+  background: transparent;
   color: #161616;
+}
+
+@media (min-width: 768px) {
+  html[data-style="editorial"] {
+    --band: 5.25rem;
+  }
 }
 
 html[data-style="editorial"] .font-display {
@@ -223,31 +230,38 @@ html[data-style="editorial"] .font-mono {
   letter-spacing: 0.14em;
 }
 
+html[data-style="editorial"] .section-pad,
+html[data-style="editorial"] main > header > .mx-auto,
+html[data-style="editorial"] main > section > .mx-auto,
+html[data-style="editorial"] main > section.mx-auto,
+html[data-style="editorial"] .on-graphite > .mx-auto,
+html[data-style="editorial"] .wash-host-dark > .mx-auto,
+html[data-style="editorial"] article > section.border-t,
+html[data-style="editorial"] footer > .mx-auto {
+  padding-top: var(--band);
+  padding-bottom: var(--band);
+}
+
 html[data-style="editorial"] .bg-ground,
 html[data-style="editorial"] .bg-ground\/90 {
-  background-color: #f6f4f0;
+  background-color: rgba(246, 244, 240, 0.78);
 }
 
 html[data-style="editorial"] .bg-surface {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.84);
 }
 
-html[data-style="editorial"] .text-tide,
-html[data-style="editorial"] .text-mute,
-html[data-style="editorial"] .text-foam {
-  color: #6a655f;
+html[data-style="editorial"] .text-mute {
+  color: #5c564f;
 }
 
-html[data-style="editorial"] .text-accent {
-  color: #161616;
+html[data-style="editorial"] .text-tide {
+  color: #3e6d88;
 }
 
-html[data-style="editorial"] .bg-accent {
-  background-color: #161616;
-}
-
-html[data-style="editorial"] .bg-tide {
-  background-color: #6a655f;
+html[data-style="editorial"] #plans article:not([data-plan="review"]) .text-foam,
+html[data-style="editorial"] #engagements article:not([data-plan="review"]) .text-foam {
+  color: #5c564f;
 }
 
 html[data-style="editorial"] .decor,
@@ -263,30 +277,42 @@ html[data-style="editorial"] .wash-host-dark {
   background-image: none;
 }
 
-html[data-style="editorial"] .on-graphite,
-html[data-style="editorial"] .bg-graphite:not(.film-card) {
-  background-color: #fff;
-  color: #161616;
+html[data-style="editorial"] .on-graphite:not(article),
+html[data-style="editorial"] .wash-host-dark,
+html[data-style="editorial"] .signal-panel,
+html[data-style="editorial"] article.bg-graphite:not([data-plan]) {
+  background-color: #162028;
+  background-image:
+    radial-gradient(ellipse at 14% 0%, rgba(255, 77, 28, 0.34), transparent 48%),
+    radial-gradient(ellipse at 90% 100%, rgba(62, 109, 136, 0.5), transparent 54%);
+  color: #f6f4f0;
 }
 
-html[data-style="editorial"] .on-graphite .text-ground,
-html[data-style="editorial"] .on-graphite .text-foam,
-html[data-style="editorial"] .bg-graphite:not(.film-card) .text-ground,
-html[data-style="editorial"] .bg-graphite:not(.film-card) .text-foam {
-  color: #161616;
+html[data-style="editorial"] .on-graphite:not(article) .text-ground,
+html[data-style="editorial"] .on-graphite:not(article) .text-foam,
+html[data-style="editorial"] .wash-host-dark .text-ground,
+html[data-style="editorial"] .wash-host-dark .text-foam,
+html[data-style="editorial"] .signal-panel .text-foam,
+html[data-style="editorial"] article.bg-graphite:not([data-plan]) .text-ground,
+html[data-style="editorial"] article.bg-graphite:not([data-plan]) .text-foam {
+  color: rgba(246, 244, 240, 0.84);
 }
 
-html[data-style="editorial"] .bg-graphite:not(.film-card) svg {
-  display: none;
+html[data-style="editorial"] .on-graphite:not(article) .text-accent,
+html[data-style="editorial"] .wash-host-dark .text-accent {
+  color: #ff7340;
 }
 
 html[data-style="editorial"] .border-t-4 {
   border-top-width: 1px;
 }
 
-html[data-style="editorial"] .border-tide,
 html[data-style="editorial"] .border-accent {
-  border-color: #161616;
+  border-color: #ff4d1c;
+}
+
+html[data-style="editorial"] .border-tide {
+  border-color: #3e6d88;
 }
 
 html[data-style="editorial"] header {
@@ -312,7 +338,7 @@ html[data-style="editorial"] .brand-name::before {
   height: 0.42rem;
   margin-right: 0.45rem;
   border-radius: 999px;
-  background: #161616;
+  background: #ff4d1c;
   transform: translateY(-1px);
 }
 
@@ -378,7 +404,9 @@ html[data-style="editorial"] #engagements article {
 
 html[data-style="editorial"] #plans article[data-plan="review"],
 html[data-style="editorial"] #engagements article[data-plan="review"] {
-  background: #141414;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(255, 77, 28, 0.38), transparent 46%),
+    #141414;
   color: #fff;
   box-shadow: none;
 }
@@ -435,6 +463,77 @@ html[data-style="editorial"] article[data-plan="advisory"] a::after {
 
 html[data-style="editorial"] #top .grid {
   grid-template-columns: minmax(0, 46rem);
+}
+
+html[data-style="editorial"] main,
+html[data-style="editorial"] footer {
+  position: relative;
+  z-index: 1;
+}
+
+.editorial-wash {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+html:not([data-style="editorial"]) .editorial-wash {
+  display: none;
+}
+
+html[data-style="editorial"] .film-card {
+  aspect-ratio: auto;
+  overflow: visible;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+html[data-style="editorial"] .film-frame {
+  height: auto;
+  aspect-ratio: 9 / 16;
+  border-radius: 1.35rem;
+  box-shadow: 0 22px 50px rgba(22, 34, 44, 0.16);
+}
+
+html[data-style="editorial"] .film-shade {
+  display: none;
+}
+
+html[data-style="editorial"] .film-copy {
+  position: static;
+  padding: 1.05rem 0.1rem 0;
+  color: #161616;
+}
+
+html[data-style="editorial"] .film-copy h3,
+html[data-style="editorial"] .film-copy p {
+  color: #161616;
+}
+
+html[data-style="editorial"] .film-copy p.text-white\/85 {
+  color: #5c564f;
+}
+
+html[data-style="editorial"] .film-copy img {
+  filter: brightness(0);
+}
+
+html[data-style="editorial"] .film-copy a {
+  border-color: rgba(22, 22, 22, 0.28);
+  color: #161616;
+}
+
+html[data-style="editorial"] .film-copy a:hover {
+  background: rgba(255, 77, 28, 0.1);
+}
+
+html[data-style="editorial"] .point-mark {
+  background: rgba(255, 77, 28, 0.12);
+  color: #ff4d1c;
 }
 
 @media (min-width: 900px) {

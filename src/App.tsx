@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import { filterAnalyticsEvent, shouldRecordAnalytics } from "./lib/analytics";
 import { isOwnerDevice } from "./lib/device";
+import { EditorialWash } from "./components/EditorialWash";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { StyleSwitch } from "./components/StyleSwitch";
@@ -47,6 +48,7 @@ function Missing() {
 export function App() {
   return (
     <>
+      <EditorialWash />
       <a
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-ink focus:px-3 focus:py-2 focus:text-ground"
         href="#main"

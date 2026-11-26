@@ -13,6 +13,7 @@ import {
 import { usePageMeta } from "../lib/meta";
 import { OfferArt } from "../components/Glyphs";
 import { HelixField, HelixMark, StrandField, useHelixWash } from "../components/Helix";
+import { iconForLine, PointIcon } from "../components/PointIcon";
 import { PortraitFilm } from "../components/PortraitFilm";
 import { Reveal } from "../components/Reveal";
 
@@ -40,7 +41,7 @@ export function Home() {
               <span className="block">into revenue.</span>
             </h1>
             <p className="mt-6 max-w-[40ch] text-[1.12rem] leading-relaxed">
-              We help you unlock growth opportunities across onboarding, monetization and retention through insights, behavioral analysis and data-driven decisions.
+              We help ambitious founders to unlock growth opportunities.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <a className="inline-flex min-h-11 items-center rounded-md bg-accent px-5 py-3 text-[15px] text-ink hover:bg-accent-hover" href={CAL} target="_blank" rel="noopener noreferrer">
@@ -98,19 +99,20 @@ export function Home() {
             {clients.map((client, index) => (
               <li key={client.id} className="min-w-0">
                 <article className="film-card group relative aspect-[9/16] overflow-hidden bg-graphite">
-                  <PortraitFilm
-                    kind={client.kind}
-                    id={client.film}
-                    title={client.filmTitle}
-                    delay={index * 700}
-                    start={client.start}
-                    poster={client.poster || undefined}
-                    crop={client.kind === "youtube" ? "landscape" : "native"}
-                    tone={client.id === "prose" ? "rose" : client.id === "perifit" ? "pine" : "navy"}
-                  />
-                  <div className={`pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[58%] ${client.kind === "tiktok" ? (client.id === "prose" ? "bg-[#2a181c]" : "bg-[#07111f]") : ""}`} />
-                  <div className={`pointer-events-none absolute inset-0 z-[6] bg-gradient-to-t ${client.gradient}`} />
-                  <div className="absolute inset-x-0 bottom-0 z-10 p-5 text-white md:p-6">
+                  <div className="film-frame relative h-full overflow-hidden bg-graphite">
+                    <PortraitFilm
+                      kind={client.kind}
+                      id={client.film}
+                      title={client.filmTitle}
+                      delay={index * 700}
+                      start={client.start}
+                      poster={client.poster || undefined}
+                      crop={client.kind === "youtube" ? "landscape" : "native"}
+                      tone={client.id === "prose" ? "rose" : client.id === "perifit" ? "pine" : "navy"}
+                    />
+                    <div className={`film-shade pointer-events-none absolute inset-0 z-[6] bg-gradient-to-t ${client.gradient}`} />
+                  </div>
+                  <div className="film-copy absolute inset-x-0 bottom-0 z-10 p-5 text-white md:p-6">
                     <img src={client.logo} alt="" className={client.logoClass} />
                     <h3 className="mt-4 font-display text-[2.15rem] leading-none">{client.name}</h3>
                     <p className="mt-2 text-[15px] leading-snug text-white/85">{client.product}</p>
@@ -141,13 +143,13 @@ export function Home() {
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-tide">The difference</p>
             <h2 className="mt-4 max-w-[14ch] font-display text-[clamp(2.6rem,5vw,4.4rem)] leading-[0.96]">
-              Look beyond the dashboard.
+              An holistic approach.
             </h2>
             <p className="mt-6 max-w-[42ch] text-[1.05rem] leading-relaxed">
-              We don't find a low conversion rate and stop at a new screen. We investigate the behavior behind the numbers, connecting quantitative data, qualitative insight, and the product experience.
+              We don't just look at a conversion rate. We dissect the user behavior and deep dive into the related metrics.
             </p>
             <p className="mt-6 max-w-[28ch] font-display text-[clamp(1.7rem,2.4vw,2.15rem)] leading-[1.15]">
-              A metric tells you what happened. Understanding user behavior helps you investigate why.
+              The data tells you what happened. We tell you why, and what to do next.
             </p>
             <p className="mt-6 max-w-[42ch] text-[15px] leading-relaxed text-mute">
               Clients leave with a clearer product decision, and a stronger chance at subscription app growth.
@@ -165,7 +167,7 @@ export function Home() {
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-tide">Who we work with</p>
             <h2 className="mt-4 max-w-[16ch] font-display text-[clamp(2.5rem,5vw,4.2rem)] leading-[0.96]">
-              Not every app is ready for growth. And that's okay.
+              We're selective.
             </h2>
           </Reveal>
           <div className="mt-14 grid gap-4 lg:grid-cols-2">
@@ -223,7 +225,10 @@ export function Home() {
                 <p className="mt-4 text-[17px] leading-snug">{plan.position}</p>
                 <ul className={`mt-6 border-t ${plan.recommended ? "border-white/15" : "border-ink/10"}`}>
                   {plan.benefits.map((item) => (
-                    <li key={item} className={`border-b py-2.5 text-[14px] leading-snug ${plan.recommended ? "border-white/15" : "border-ink/10"}`}>{item}</li>
+                    <li key={item} className={`flex items-start gap-3 border-b py-2.5 text-[14px] leading-snug ${plan.recommended ? "border-white/15" : "border-ink/10"}`}>
+                      <PointIcon name={iconForLine(item)} className="point-icon mt-0.5 h-[1.15rem] w-[1.15rem] shrink-0 text-accent" />
+                      <span>{item}</span>
+                    </li>
                   ))}
                 </ul>
                 <p className={`mt-4 text-[13px] leading-snug ${plan.recommended ? "text-foam" : "text-mute"}`}>
@@ -290,34 +295,19 @@ function Figure({ value }: { value: string }) {
 }
 
 function SignalPanel() {
-  const strand = (phase: number) => {
-    let d = "";
-    for (let i = 0; i <= 72; i++) {
-      const u = i / 72;
-      const x = 20 + Math.sin(u * Math.PI * 4 + phase) * 9;
-      const y = 6 + u * 308;
-      d += `${i ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)} `;
-    }
-    return d;
-  };
-
   return (
-    <div className="group overflow-hidden bg-graphite px-6 py-8 text-ground md:px-8 md:py-10">
+    <div className="signal-panel group overflow-hidden bg-graphite px-6 py-8 text-ground md:px-8 md:py-10">
       <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-foam">What we investigate</p>
-      <div className="relative mt-6">
-        <svg className="pointer-events-none absolute inset-y-0 left-0 h-full w-10" viewBox="0 0 40 320" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-          <path className="strand" d={strand(0)} fill="none" stroke="#D9D0C3" strokeWidth="1.3" />
-          <path className="strand" d={strand(Math.PI)} fill="none" stroke="#3E6D88" strokeWidth="1.3" />
-        </svg>
-        <ul>
-          {signals.map((signal, index) => (
-            <li key={signal.id} className="grid grid-cols-[2.5rem_1fr] items-center border-b border-white/10 py-[1.05rem] last:border-b-0">
-              <span className={`relative z-10 h-2.5 w-2.5 justify-self-center rounded-full ${index % 2 ? "bg-tide" : "bg-accent"}`} />
-              <span className="text-[16px] leading-snug">{signal.label}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <ul className="mt-6">
+        {signals.map((signal) => (
+          <li key={signal.id} className="grid grid-cols-[2.75rem_1fr] items-center gap-3 border-b border-white/10 py-3 last:border-b-0">
+            <span className="point-mark grid h-10 w-10 place-items-center rounded-xl bg-white/10 text-[#FF4D1C]">
+              <PointIcon name={signal.id} />
+            </span>
+            <span className="text-[16px] leading-snug">{signal.label}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

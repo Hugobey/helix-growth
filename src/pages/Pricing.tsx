@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { CAL_SPRINT, plans, pricingFaqs } from "../content";
 import { HelixMark, StrandField } from "../components/Helix";
+import { iconForLine, PointIcon } from "../components/PointIcon";
 import { Reveal } from "../components/Reveal";
 import { usePageMeta } from "../lib/meta";
 
@@ -22,7 +23,7 @@ const sprintFit = [
 ];
 
 const nextSteps = [
-  { n: "01", title: "We understand your app and business objectives." },
+  { n: "01", title: "We identify leakage points." },
   { n: "02", title: "We investigate the user journey and identify opportunities." },
   { n: "03", title: "We present a prioritized growth strategy and recommendations." },
 ];
@@ -80,7 +81,10 @@ export function Pricing() {
               <p className="mt-5 min-h-[4.75rem] text-[16px] leading-snug">{plan.position}</p>
               <ul className="mt-8 flex-1 border-t border-ink/10">
                 {plan.benefits.map((item) => (
-                  <li key={item} className="border-b border-ink/10 py-3 text-[15px] leading-snug">{item}</li>
+                  <li key={item} className="flex items-start gap-3 border-b border-ink/10 py-3 text-[15px] leading-snug">
+                    <PointIcon name={iconForLine(item)} className="point-icon mt-0.5 h-[1.15rem] w-[1.15rem] shrink-0 text-accent" />
+                    <span>{item}</span>
+                  </li>
                 ))}
               </ul>
               <a
