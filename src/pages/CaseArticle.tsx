@@ -72,7 +72,12 @@ export function CaseArticle() {
           <Section n="02" title="The investigation" id="investigation">
             <p>{study.investigation}</p>
           </Section>
-          <Section n="03" title="The solution" id="solution">
+          <Section
+            n="03"
+            title="The solution"
+            id="solution"
+            exhibit={study.diagram === "shift" ? <div className="mt-10"><CaseDiagram name={study.diagram} /></div> : undefined}
+          >
             <p>{study.solution}</p>
             {study.moves.length > 0 && (
               <ul className="mt-6 max-w-[40rem] border-t border-ink/10">
@@ -81,9 +86,11 @@ export function CaseArticle() {
                 ))}
               </ul>
             )}
-            <div className="mt-10 max-w-[44rem]">
-              <CaseDiagram name={study.diagram} />
-            </div>
+            {study.diagram !== "shift" && (
+              <div className="mt-10 max-w-[44rem]">
+                <CaseDiagram name={study.diagram} />
+              </div>
+            )}
           </Section>
         </div>
 
@@ -145,12 +152,13 @@ export function CaseArticle() {
   );
 }
 
-function Section({ n, title, id, children }: { n: string; title: string; id: string; children: ReactNode }) {
+function Section({ n, title, id, children, exhibit }: { n: string; title: string; id: string; children: ReactNode; exhibit?: ReactNode }) {
   return (
     <section className="border-t border-ink/10 py-14 md:py-16" aria-labelledby={id}>
       <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-tide">{n}</p>
       <h2 id={id} className="mt-3 font-display text-[clamp(2rem,3vw,2.7rem)] leading-none">{title}</h2>
       <div className="mt-5 max-w-[42rem] text-[1.08rem] leading-relaxed">{children}</div>
+      {exhibit}
     </section>
   );
 }

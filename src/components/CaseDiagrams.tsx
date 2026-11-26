@@ -1,39 +1,23 @@
 export function CaseDiagram({ name }: { name: "shift" | "flow" | "exposure" }) {
-  if (name === "shift") return <Shift />;
+  if (name === "shift") return <WizzRevenue />;
   if (name === "flow") return <Flow />;
   return <Exposure />;
 }
 
-function Shift() {
+function WizzRevenue() {
   return (
     <figure>
-      <svg viewBox="0 0 640 210" className="h-auto w-full" role="img" aria-labelledby="shift-title">
-        <title id="shift-title">From a passive mechanic to an immediate reason to act.</title>
-        <path className="strand" d="M70 78C180 20 250 20 320 78s140 58 250 0" fill="none" stroke="#3E6D88" strokeWidth="1.4" />
-        <path className="strand" d="M70 78C180 136 250 136 320 78S460 20 570 78" fill="none" stroke="#1C1916" strokeWidth="1.4" opacity="0.35" />
-        <circle cx="70" cy="78" r="7" fill="#1C1916" />
-        <circle cx="570" cy="78" r="7" fill="#FF4D1C" />
-        <text x="70" y="118" fill="#4F4942" fontFamily="JetBrains Mono, ui-monospace, monospace" fontSize="12" letterSpacing="1.4">
-          PASSIVE
-        </text>
-        <text x="570" y="118" textAnchor="end" fill="#1C1916" fontFamily="JetBrains Mono, ui-monospace, monospace" fontSize="12" letterSpacing="1.4">
-          IMMEDIATE
-        </text>
-        {["Immediacy", "FOMO", "Behavioral triggers"].map((label, index) => (
-          <text
-            key={label}
-            x={120 + index * 170}
-            y="178"
-            fill="#1C1916"
-            fontFamily="Satoshi, system-ui, sans-serif"
-            fontSize="16"
-          >
-            {label}
-          </text>
-        ))}
-      </svg>
+      <div className="overflow-hidden rounded-[1.25rem] bg-[#101010]">
+        <img
+          src="/assets/wizz-revenue.png"
+          alt="Estimated revenue chart. On 1 September 2025 the marker reads $3M, and the line rises after that."
+          width={1500}
+          height={582}
+          className="block h-auto w-full"
+        />
+      </div>
       <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-[0.14em] text-mute">
-        The concept. Not the build.
+        Estimated revenue. 1 September 2025, $3M.
       </figcaption>
     </figure>
   );
