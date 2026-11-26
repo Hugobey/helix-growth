@@ -12,9 +12,9 @@ export function Mark() {
 
 export function Brand({ to = "/" }: { to?: string }) {
   return (
-    <Link to={to} className="inline-flex items-center gap-2.5 text-ink">
-      <Mark />
-      <span className="font-display text-[1.45rem] leading-none tracking-[-0.03em]">Helix Growth</span>
+    <Link to={to} className="brand-link inline-flex items-center gap-2.5 text-ink">
+      <span className="brand-mark"><Mark /></span>
+      <span className="brand-name font-display text-[1.45rem] leading-none tracking-[-0.03em]">Helix Growth</span>
     </Link>
   );
 }

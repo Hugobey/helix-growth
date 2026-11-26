@@ -12,6 +12,13 @@ const links = [
   { href: "/methodology", label: "Method" },
 ];
 
+function currentLink(href: string, pathname: string) {
+  if (href === "/methodology") return pathname === "/methodology";
+  if (href === "/pricing") return pathname === "/pricing";
+  if (href === "/case-studies") return pathname.startsWith("/case-studies");
+  return false;
+}
+
 export function Header() {
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
@@ -42,7 +49,12 @@ export function Header() {
         <Brand to="/" />
         <nav className="ml-auto hidden items-center gap-6 text-[15px] md:flex" aria-label="Primary">
           {links.map((link) => (
-            <Link key={link.href} to={link.href} className="text-ink hover:underline hover:underline-offset-4">
+            <Link
+              key={link.href}
+              to={link.href}
+              aria-current={currentLink(link.href, pathname) ? "page" : undefined}
+              className="text-ink hover:underline hover:underline-offset-4"
+            >
               {link.label}
             </Link>
           ))}

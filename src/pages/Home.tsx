@@ -51,7 +51,7 @@ export function Home() {
               </a>
             </div>
           </Reveal>
-          <div className="min-w-0">
+          <div className="hero-aside min-w-0">
             <div className="relative h-[280px] md:h-[400px]">
               <HelixField className="absolute inset-0" />
             </div>
@@ -198,7 +198,7 @@ export function Home() {
       <section ref={offerRef} className="wash-host relative scroll-mt-24 overflow-hidden bg-ground" id="engagements">
         <StrandField />
         <div className="relative mx-auto max-w-page px-6 section-pad md:px-10">
-          <Reveal>
+          <Reveal className="editorial-lead">
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-mute">Three ways to work together</p>
             <h2 className="mt-4 max-w-[16ch] font-display text-[clamp(2.4rem,4.5vw,3.8rem)] leading-[0.98]">
               A review, a sprint, or a continuing partner.
@@ -212,6 +212,7 @@ export function Home() {
               <article
                 id={plan.id}
                 key={plan.id}
+                data-plan={plan.id}
                 className={`flex scroll-mt-28 flex-col p-6 md:p-8 ${plan.recommended ? "on-graphite bg-graphite text-ground" : "border border-ink/10 bg-surface"}`}
               >
                 {plan.id === "review" && <span id="audit" />}

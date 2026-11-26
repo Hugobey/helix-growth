@@ -177,12 +177,12 @@ export function HelixField({ className = "" }: { className?: string }) {
     };
   }, []);
 
-  return <canvas ref={ref} className={`block h-full w-full ${className}`} aria-hidden="true" />;
+  return <canvas ref={ref} className={`decor block h-full w-full ${className}`} aria-hidden="true" />;
 }
 
 export function HelixMark({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 640 140" className={className} aria-hidden="true">
+    <svg viewBox="0 0 640 140" className={`decor ${className}`} aria-hidden="true">
       <path className="strand" d={STRAND_A} fill="none" stroke="currentColor" strokeWidth="1.4" />
       <path className="strand" d={STRAND_B} fill="none" stroke="currentColor" strokeWidth="1.4" opacity="0.38" />
       <circle className="glyph-node" cx="320" cy="70" r="4" fill="#FF4D1C" />
@@ -225,7 +225,7 @@ export function useHelixWash<T extends HTMLElement>() {
 export function StrandField({ tone = "light" }: { tone?: "light" | "dark" }) {
   const ink = tone === "dark" ? "text-foam/25" : "text-tide/35";
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div className="decor pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       <svg className={`absolute -left-[12%] top-[8%] h-[46%] w-[78%] ${ink}`} viewBox="0 0 800 240" fill="none">
         <path className="strand" d="M0 120C150 16 250 16 400 120s250 104 400 0" stroke="currentColor" strokeWidth="1.25" />
         <path className="strand" d="M0 120C150 224 250 224 400 120S650 16 800 120" stroke="currentColor" strokeWidth="1.25" opacity="0.55" />

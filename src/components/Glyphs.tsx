@@ -73,7 +73,7 @@ export function OfferArt({ name }: { name: "review" | "sprint" | "advisory" }) {
 
   if (name === "review") {
     return (
-      <svg viewBox="0 0 220 120" className="h-28 w-full" aria-hidden="true">
+      <svg viewBox="0 0 220 120" className="decor h-28 w-full" aria-hidden="true">
         <circle cx="96" cy="58" r="28" {...stroke} />
         <motion.path d="M116 76 L146 102" {...stroke} {...draw} />
         <circle className="glyph-node" cx="96" cy="58" r="4" fill="#FF4D1C" />
@@ -84,7 +84,7 @@ export function OfferArt({ name }: { name: "review" | "sprint" | "advisory" }) {
 
   if (name === "sprint") {
     return (
-      <svg viewBox="0 0 220 120" className="h-28 w-full text-ground" aria-hidden="true">
+      <svg viewBox="0 0 220 120" className="decor h-28 w-full text-ground" aria-hidden="true">
         <motion.path d="M30 78 L70 40 L120 70 L168 34 L196 58" {...stroke} {...draw} />
         <circle cx="30" cy="78" r="3" fill="currentColor" />
         <circle cx="70" cy="40" r="3" fill="currentColor" />
@@ -96,7 +96,7 @@ export function OfferArt({ name }: { name: "review" | "sprint" | "advisory" }) {
   }
 
   return (
-    <svg viewBox="0 0 220 120" className="h-28 w-full" aria-hidden="true">
+    <svg viewBox="0 0 220 120" className="decor h-28 w-full" aria-hidden="true">
       <motion.path className="strand" d="M20 60 C50 28 80 28 110 60 S170 92 200 60" {...stroke} {...draw} />
       <path d="M20 60 C50 92 80 92 110 60 S170 28 200 60" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.4" />
       <circle className="glyph-node" cx="110" cy="60" r="4" fill="#FF4D1C" />

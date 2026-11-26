@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script>
+      (function () {
+        try {
+          var q = new URLSearchParams(location.search).get("style");
+          var stored = localStorage.getItem("helixgrowth.style");
+          var style = q === "editorial" || q === "current" ? q : stored === "editorial" ? "editorial" : "current";
+          document.documentElement.dataset.style = style;
+        } catch (e) {}
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Helix Growth — Turn more users into revenue</title>

@@ -50,7 +50,7 @@ export function Pricing() {
           <StrandField />
         </div>
         <div className="relative mx-auto max-w-page px-6 pb-4 pt-16 md:px-10 md:pt-20">
-          <Reveal>
+          <Reveal className="editorial-lead">
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-tide">Pricing</p>
             <h1 className="mt-4 max-w-[14ch] font-display text-[clamp(2.8rem,5.6vw,4.8rem)] leading-[0.94]">
               Find the right way to grow your app.
@@ -69,6 +69,7 @@ export function Pricing() {
             <article
               id={plan.id}
               key={plan.id}
+              data-plan={plan.id}
               className={`flex scroll-mt-32 flex-col px-6 py-8 md:px-8 md:py-10 ${plan.recommended ? "order-first border-2 border-ink bg-surface lg:order-none" : "border border-ink/15 bg-ground"}`}
             >
               <p className="min-h-6 font-mono text-[11px] uppercase tracking-[0.16em] text-tide">{plan.kicker}</p>
