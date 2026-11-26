@@ -343,15 +343,8 @@ html[data-style="editorial"] main {
 }
 
 html[data-style="editorial"] .brand-mark {
-  display: none;
-}
-
-html[data-style="editorial"] .brand-helix {
-  display: block;
-  width: 1.05rem;
-  height: 1.35rem;
-  flex: none;
-  color: #161616;
+  width: 1.15rem;
+  height: 1.15rem;
 }
 
 html[data-style="editorial"] .brand-name {
@@ -359,10 +352,6 @@ html[data-style="editorial"] .brand-name {
   font-weight: 600;
   font-size: 1.02rem;
   letter-spacing: -0.03em;
-}
-
-.brand-helix {
-  display: none;
 }
 
 html[data-style="editorial"] header nav a[aria-current="page"] {
