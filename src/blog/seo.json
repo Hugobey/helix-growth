@@ -1,0 +1,93 @@
+{
+  "article": {
+    "url": "https://helixgrowth.io/blog/product-led-growth-mobile-apps",
+    "title": "Product-Led Growth for Mobile Apps | Helix Growth",
+    "description": "Why more users won't fix a leaky app. How product-led growth, retention and referral make every acquired user more valuable.",
+    "canonical": "https://helixgrowth.io/blog/product-led-growth-mobile-apps",
+    "robots": "index,follow,max-image-preview:large",
+    "og": {
+      "type": "article",
+      "title": "Stop trying to acquire more users. Start building a product worth growing.",
+      "description": "Why more users won't fix a leaky app. How product-led growth, retention and referral make every acquired user more valuable.",
+      "url": "https://helixgrowth.io/blog/product-led-growth-mobile-apps",
+      "image": "https://helixgrowth.io/blog/product-led-growth-mobile-apps/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "Helix Growth article: Stop trying to acquire more users",
+      "site_name": "Helix Growth"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Product-Led Growth for Mobile Apps | Helix Growth",
+      "description": "Why more users won't fix a leaky app. How product-led growth, retention and referral make every acquired user more valuable.",
+      "image": "https://helixgrowth.io/blog/product-led-growth-mobile-apps/og.jpg"
+    },
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "@id": "https://helixgrowth.io/blog/product-led-growth-mobile-apps#article",
+          "headline": "Stop trying to acquire more users. Start building a product worth growing.",
+          "description": "Why more users won't fix a leaky app. How product-led growth, retention and referral make every acquired user more valuable.",
+          "url": "https://helixgrowth.io/blog/product-led-growth-mobile-apps",
+          "mainEntityOfPage": "https://helixgrowth.io/blog/product-led-growth-mobile-apps",
+          "image": [
+            "https://helixgrowth.io/blog/product-led-growth-mobile-apps/og.jpg"
+          ],
+          "datePublished": "2026-11-27",
+          "dateModified": "2026-11-27",
+          "inLanguage": "en",
+          "wordCount": 1589,
+          "articleSection": "Product-led growth",
+          "keywords": "product-led growth, mobile app growth, app retention, referral, activation",
+          "author": {
+            "@type": "Person",
+            "name": "Hugo Blanchart",
+            "image": "https://helixgrowth.io/assets/hugo.jpg",
+            "url": "https://helixgrowth.io/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Helix Growth",
+            "url": "https://helixgrowth.io/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://helixgrowth.io/assets/apple-touch-icon.png"
+            }
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://helixgrowth.io/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "https://helixgrowth.io/blog"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Product-led growth for mobile apps",
+              "item": "https://helixgrowth.io/blog/product-led-growth-mobile-apps"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "blogIndex": {
+    "url": "https://helixgrowth.io/blog",
+    "canonical": "https://helixgrowth.io/blog",
+    "title": "Mobile App Growth Blog | Helix Growth",
+    "description": "Essays on mobile app growth: product-led growth, activation, conversion, retention and referral, from Helix Growth.",
+    "h1": "Notes on mobile app growth."
+  }
+}

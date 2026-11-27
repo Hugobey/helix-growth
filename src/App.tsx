@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import { filterAnalyticsEvent, shouldRecordAnalytics } from "./lib/analytics";
@@ -13,6 +13,9 @@ import { Method } from "./pages/Method";
 import { Prepare } from "./pages/Prepare";
 import { Pricing } from "./pages/Pricing";
 import { Sprint } from "./pages/Sprint";
+
+const Blog = lazy(() => import("./pages/Blog").then((mod) => ({ default: mod.Blog })));
+const BlogArticle = lazy(() => import("./pages/BlogArticle").then((mod) => ({ default: mod.BlogArticle })));
 
 function RouteAnalytics() {
   const { pathname } = useLocation();
@@ -64,6 +67,8 @@ export function App() {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/growth-sprint" element={<Sprint />} />
         <Route path="/preparing-for-a-growth-review" element={<Prepare />} />
+        <Route path="/blog" element={<Suspense fallback={<main id="main" className="min-h-[50vh]" />}><Blog /></Suspense>} />
+        <Route path="/blog/:slug" element={<Suspense fallback={<main id="main" className="min-h-[50vh]" />}><BlogArticle /></Suspense>} />
         <Route path="*" element={<Missing />} />
       </Routes>
       <Footer />

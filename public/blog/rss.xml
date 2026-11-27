@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Helix Growth blog</title>
+    <link>https://helixgrowth.io/blog</link>
+    <description>Essays on mobile app growth: product-led growth, activation, conversion, retention and referral, from Helix Growth.</description>
+    <item>
+      <title>Stop trying to acquire more users. Start building a product worth growing.</title>
+      <link>https://helixgrowth.io/blog/product-led-growth-mobile-apps</link>
+      <guid>https://helixgrowth.io/blog/product-led-growth-mobile-apps</guid>
+      <pubDate>Fri, 27 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Most founders are trying to solve a product problem with a marketing solution. Here is where sustainable mobile app growth starts.</description>
+    </item>
+  </channel>
+</rss>

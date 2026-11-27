@@ -10,12 +10,14 @@ const links = [
   { href: "/case-studies", label: "Cases" },
   { href: "/pricing", label: "Pricing" },
   { href: "/methodology", label: "Method" },
+  { href: "/blog", label: "Blog" },
 ];
 
 function currentLink(href: string, pathname: string) {
   if (href === "/methodology") return pathname === "/methodology";
   if (href === "/pricing") return pathname === "/pricing";
   if (href === "/case-studies") return pathname.startsWith("/case-studies");
+  if (href === "/blog") return pathname === "/blog" || pathname.startsWith("/blog/");
   return false;
 }
 
@@ -78,7 +80,7 @@ export function Header() {
     >
       <div className="mx-auto flex h-[72px] max-w-page items-center gap-6 px-6 md:px-10">
         <Brand to="/" />
-        <nav className="ml-auto hidden items-center gap-6 text-[15px] md:flex" aria-label="Primary">
+        <nav className="ml-auto hidden items-center gap-5 text-[15px] lg:flex" aria-label="Primary">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -91,7 +93,7 @@ export function Header() {
           ))}
         </nav>
         <a
-          className="ml-2 hidden min-h-11 items-center rounded-md bg-ink px-4 py-2 text-[14px] text-ground md:inline-flex"
+          className="ml-2 hidden min-h-11 items-center rounded-md bg-ink px-4 py-2 text-[14px] text-ground lg:inline-flex"
           href={CAL}
           target="_blank"
           rel="noopener noreferrer"
@@ -100,7 +102,7 @@ export function Header() {
         </a>
         <button
           type="button"
-          className="ml-auto inline-flex h-11 w-11 items-center justify-center md:hidden"
+          className="ml-auto inline-flex h-11 w-11 items-center justify-center lg:hidden"
           aria-expanded={open}
           aria-controls="menu"
           onClick={() => setOpen((value) => !value)}
@@ -117,7 +119,7 @@ export function Header() {
         {open && (
           <motion.div
             id="menu"
-            className="border-t border-ink/10 bg-ground md:hidden"
+            className="border-t border-ink/10 bg-ground lg:hidden"
             initial={reduce ? false : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={reduce ? undefined : { height: 0, opacity: 0 }}
