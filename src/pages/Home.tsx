@@ -69,7 +69,7 @@ export function Home() {
           <div className="flex flex-wrap items-end justify-between gap-6">
             <Reveal>
               <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-foam">Recorded results</p>
-              <h2 className="mt-4 max-w-[12ch] font-display text-[clamp(2.6rem,5vw,4.4rem)] leading-[0.96]">Three results.</h2>
+              <h2 className="mt-4 max-w-[12ch] font-display text-[clamp(2.6rem,5vw,4.4rem)] leading-[0.96]">Some results.</h2>
             </Reveal>
             <Link className="text-[15px] text-ground underline decoration-white/30 underline-offset-4" to="/case-studies">
               Read the case studies
@@ -93,7 +93,7 @@ export function Home() {
         <div className="relative mx-auto max-w-page px-6 section-pad md:px-10">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-mute">Selected clients</p>
-            <h2 className="mt-4 max-w-[14ch] font-display text-[clamp(2.6rem,5vw,4.4rem)] leading-[0.96]">In the product.</h2>
+            <h2 className="mt-4 max-w-[14ch] font-display text-[clamp(2.6rem,5vw,4.4rem)] leading-[0.96]">We worked together</h2>
           </Reveal>
           <ul className="mt-16 grid gap-6 lg:grid-cols-3">
             {clients.map((client, index) => (
@@ -143,7 +143,7 @@ export function Home() {
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-tide">The difference</p>
             <h2 className="mt-4 max-w-[14ch] font-display text-[clamp(2.6rem,5vw,4.4rem)] leading-[0.96]">
-              An holistic approach.
+              Our holistic approach.
             </h2>
             <p className="mt-6 max-w-[42ch] text-[1.05rem] leading-relaxed">
               We don't just look at a conversion rate. We dissect the user behavior and deep dive into the related metrics.
@@ -260,10 +260,10 @@ export function Home() {
         <div className="relative mx-auto max-w-page px-6 section-pad md:px-10">
           <HelixMark className="mb-10 w-full max-w-md text-ground/50" />
           <h2 className="max-w-[14ch] font-display text-[clamp(2.8rem,6vw,5rem)] leading-[0.94]">
-            Bring a live product.
+            Let's make your app more profitable.
           </h2>
           <p className="mt-5 max-w-[36ch] text-[1.05rem] leading-relaxed text-foam">
-            We'll read the behavior behind the numbers, and the product decision that follows.
+            We'll read behind the numbers and the behaviors, to help you make the product decision that follows.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
             <a className="inline-flex min-h-11 items-center rounded-md bg-accent px-5 py-3 text-[15px] text-ink hover:bg-accent-hover" href={CAL} target="_blank" rel="noopener noreferrer">

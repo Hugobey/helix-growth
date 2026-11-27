@@ -24,15 +24,15 @@ const sprintFit = [
 
 const nextSteps = [
   { n: "01", title: "We identify leakage points." },
-  { n: "02", title: "We investigate the user journey and identify opportunities." },
+  { n: "02", title: "We look at your data, the users journey and generate opportunities." },
   { n: "03", title: "We present a prioritized growth strategy and recommendations." },
 ];
 
 const clientProvides = [
   "App access.",
-  "Analytics access where available.",
-  "Relevant monetization data.",
-  "Availability for discussions with key stakeholders.",
+  "Analytics access or data export.",
+  "Experiment history",
+  "Business context and goals.",
 ];
 
 export function Pricing() {
@@ -120,7 +120,7 @@ export function Pricing() {
             ))}
           </ul>
           <div className="mt-10 max-w-[40rem] border-t-4 border-ink bg-surface p-6 md:p-8">
-            <h3 className="font-display text-[1.7rem] leading-none">Start with the App Growth Review instead.</h3>
+            <h3 className="font-display text-[1.7rem] leading-none">You can also opt for the App Growth Review.</h3>
             <p className="mt-4 text-[16px] leading-relaxed">
               Indie developers and small app businesses, and founders who are not ready for a full growth engagement, get more from the one-day review. It is $350, it takes no more than one working day, and it is a focused read of where growth is being lost. It is not a comprehensive audit.
             </p>
@@ -147,22 +147,22 @@ export function Pricing() {
               </li>
             ))}
           </ol>
-          <p className="mt-8 max-w-[42rem] text-[16px] leading-relaxed">
+          {/* <p className="mt-8 max-w-[42rem] text-[16px] leading-relaxed">
             The depth follows the engagement. The review returns priorities in a day. The sprint returns a direction for the next 90 days. Advisory keeps that direction current.
-          </p>
+          </p> */}
           <h3 className="mt-12 font-display text-[1.7rem] leading-none">What we need from you</h3>
           <ul className="mt-5 max-w-[36rem] border-t border-ink/10">
             {clientProvides.map((item) => (
               <li key={item} className="border-b border-ink/10 py-3 text-[16px]">{item}</li>
             ))}
           </ul>
-          <p className="mt-6 max-w-[40rem] text-[15px] leading-relaxed text-mute">
+          {/* <p className="mt-6 max-w-[40rem] text-[15px] leading-relaxed text-mute">
             If a source is missing, say so. We will not fill the gap with invented numbers.{" "}
             <Link className="text-ink underline decoration-ink/30 underline-offset-4" to="/preparing-for-a-growth-review">
               Preparing your mobile app for a growth review
             </Link>{" "}
             is the short list of what makes the day useful.
-          </p>
+          </p> */}
         </div>
       </section>
 

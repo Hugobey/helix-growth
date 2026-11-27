@@ -91,9 +91,9 @@ export function Cases() {
         <StrandField tone="dark" />
         <div className="relative mx-auto max-w-page px-6 py-16 md:px-10 md:py-24">
           <HelixMark className="mb-8 w-full max-w-md text-ground/50" />
-          <h2 className="max-w-[12ch] font-display text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.94]">Bring a live product.</h2>
+          <h2 className="max-w-[12ch] font-display text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.94]">Let's make your app more profitable.</h2>
           <p className="mt-5 max-w-[36ch] text-[1.05rem] leading-relaxed text-foam">
-            We'll read the behavior behind the numbers, and the product decision that follows.
+            We'll read behind the numbers and the behaviors, to help you make the product decision that follows.
           </p>
           <a className="mt-8 inline-flex min-h-11 items-center rounded-md bg-accent px-5 py-3 text-[15px] text-ink hover:bg-accent-hover" href={CAL} target="_blank" rel="noopener noreferrer">
             Let's grow your app

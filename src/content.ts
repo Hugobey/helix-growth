@@ -258,6 +258,12 @@ export const caseStudies: CaseStudy[] = [
       "The new onboarding achieved a 34% relative improvement in conversion rate compared with the previous version, validated through an A/B test.",
     ],
     diagram: "flow",
+    image: {
+      src: "/assets/prose-background.jpg",
+      alt: "Prose onboarding experience.",
+      caption: "Prose, in the product.",
+      well: "bg-[#071426]",
+    },
     seoTitle: "Prose onboarding conversion case study — Helix Growth",
     seoDescription: "Trust before the ask. Prose onboarding conversion improved 34% relative to the previous version, validated through an A/B test.",
   },
@@ -279,7 +285,7 @@ export const caseStudies: CaseStudy[] = [
     results: ["Paywall conversion doubled following the optimization work."],
     diagram: "exposure",
     image: {
-      src: "/assets/perifit-paywall.png",
+      src: "/assets/perifit-background.jpg",
       alt: "Unlock Perifit Premium, the paywall in the app.",
       caption: "Perifit Premium, in the app.",
       well: "bg-[#071c18]",

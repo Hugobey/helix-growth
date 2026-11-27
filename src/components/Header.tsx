@@ -5,8 +5,7 @@ import { CAL } from "../content";
 import { Brand } from "./Brand";
 
 const links = [
-  { href: "/#results", label: "Results" },
-  { href: "/#clients", label: "Work" },
+  { href: "/#results", label: "Growth" },
   { href: "/case-studies", label: "Cases" },
   { href: "/pricing", label: "Pricing" },
   { href: "/methodology", label: "Method" },
