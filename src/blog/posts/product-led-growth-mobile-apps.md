@@ -11,7 +11,7 @@ dateModified: "2026-11-27"
 readingTime: "7 min read"
 excerpt: "Most founders are trying to solve a product problem with a marketing solution. Here is where sustainable mobile app growth starts."
 cover: "/blog/product-led-growth-mobile-apps/cover.webp"
-coverAlt: "Abstract double helix with coral and blue nodes, the Helix Growth mark for connected growth stages"
+coverAlt: "A line of acquisition that ends, beside a product loop that returns into itself"
 ogImage: "/blog/product-led-growth-mobile-apps/og.jpg"
 ---
 

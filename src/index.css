@@ -353,11 +353,6 @@ html .brand-name {
   letter-spacing: -0.03em;
 }
 
-html header nav a[aria-current="page"] {
-  outline: 1.5px solid #e4572e;
-  outline-offset: 7px;
-}
-
 html a.bg-accent,
 html a.bg-ink {
   display: inline-flex;
@@ -588,6 +583,7 @@ html .point-mark {
 
 .article-body {
   max-width: 42rem;
+  min-width: 0;
   font-size: 1.125rem;
   line-height: 1.7;
 }
@@ -679,6 +675,8 @@ html .point-mark {
 
 .article-figure {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   margin: 3rem auto;
 }
 
@@ -719,9 +717,9 @@ html .point-mark {
 
 @media (min-width: 1024px) {
   .article-layout {
-    grid-template-columns: 12rem minmax(0, 42rem);
-    justify-content: center;
-    column-gap: 3rem;
+    grid-template-columns: 13rem minmax(0, 1fr);
+    justify-content: stretch;
+    column-gap: 3.5rem;
     align-items: start;
   }
 
@@ -735,10 +733,18 @@ html .point-mark {
     display: none;
   }
 
+  .article-body {
+    max-width: none;
+  }
+
+  .article-body > :not(.article-figure) {
+    max-width: 40rem;
+  }
+
   .article-figure {
-    width: min(60rem, calc(100% + 15rem), calc(100vw - 5rem));
-    margin-left: calc(50% - 7.5rem);
-    transform: translateX(-50%);
+    width: 100%;
+    margin-left: 0;
+    transform: none;
   }
 }
 
