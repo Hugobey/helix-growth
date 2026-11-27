@@ -1,13 +1,13 @@
 {
   "article": {
     "url": "https://helixgrowth.io/blog/product-led-growth-mobile-apps",
-    "title": "Product-Led Growth for Mobile Apps | Helix Growth",
+    "title": "Marketing is dead. Long live the Product. | Helix Growth",
     "description": "Why more users won't fix a leaky app. How product-led growth, retention and referral make every acquired user more valuable.",
     "canonical": "https://helixgrowth.io/blog/product-led-growth-mobile-apps",
     "robots": "index,follow,max-image-preview:large",
     "og": {
       "type": "article",
-      "title": "Stop trying to acquire more users. Start building a product worth growing.",
+      "title": "Marketing is dead. Long live the Product.",
       "description": "Why more users won't fix a leaky app. How product-led growth, retention and referral make every acquired user more valuable.",
       "url": "https://helixgrowth.io/blog/product-led-growth-mobile-apps",
       "image": "https://helixgrowth.io/blog/product-led-growth-mobile-apps/og.jpg",
@@ -18,7 +18,7 @@
     },
     "twitter": {
       "card": "summary_large_image",
-      "title": "Product-Led Growth for Mobile Apps | Helix Growth",
+      "title": "Marketing is dead. Long live the Product. | Helix Growth",
       "description": "Why more users won't fix a leaky app. How product-led growth, retention and referral make every acquired user more valuable.",
       "image": "https://helixgrowth.io/blog/product-led-growth-mobile-apps/og.jpg"
     },
@@ -28,7 +28,7 @@
         {
           "@type": "BlogPosting",
           "@id": "https://helixgrowth.io/blog/product-led-growth-mobile-apps#article",
-          "headline": "Stop trying to acquire more users. Start building a product worth growing.",
+          "headline": "Marketing is dead. Long live the Product.",
           "description": "Why more users won't fix a leaky app. How product-led growth, retention and referral make every acquired user more valuable.",
           "url": "https://helixgrowth.io/blog/product-led-growth-mobile-apps",
           "mainEntityOfPage": "https://helixgrowth.io/blog/product-led-growth-mobile-apps",
@@ -75,7 +75,7 @@
             {
               "@type": "ListItem",
               "position": 3,
-              "name": "Product-led growth for mobile apps",
+              "name": "Marketing is dead. Long live the Product.",
               "item": "https://helixgrowth.io/blog/product-led-growth-mobile-apps"
             }
           ]

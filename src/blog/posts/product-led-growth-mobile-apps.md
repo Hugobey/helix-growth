@@ -1,6 +1,6 @@
 ---
 title: "Marketing is dead. Long live the Product."
-seoTitle: "Product-Led Growth for Mobile Apps | Helix Growth"
+seoTitle: "Marketing is dead. Long live the Product. | Helix Growth"
 description: "Why more users won't fix a leaky app. How product-led growth, retention and referral make every acquired user more valuable."
 slug: "product-led-growth-mobile-apps"
 category: "Product-led growth"
