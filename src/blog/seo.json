@@ -1,13 +1,13 @@
 {
   "article": {
     "url": "https://helixgrowth.io/blog/product-led-growth-mobile-apps",
-    "title": "Marketing is dead. Long live the Product. | Helix Growth",
+    "title": "Marketing Is Dead? Product-Led Growth for Mobile Apps",
     "description": "Why more users won't fix a leaky app. How product-led growth, retention and referral make every acquired user more valuable.",
     "canonical": "https://helixgrowth.io/blog/product-led-growth-mobile-apps",
     "robots": "index,follow,max-image-preview:large",
     "og": {
       "type": "article",
-      "title": "Marketing is dead. Long live the Product.",
+      "title": "Marketing is dead. Long live the product.",
       "description": "Why more users won't fix a leaky app. How product-led growth, retention and referral make every acquired user more valuable.",
       "url": "https://helixgrowth.io/blog/product-led-growth-mobile-apps",
       "image": "https://helixgrowth.io/blog/product-led-growth-mobile-apps/og.jpg",
@@ -18,7 +18,7 @@
     },
     "twitter": {
       "card": "summary_large_image",
-      "title": "Marketing is dead. Long live the Product. | Helix Growth",
+      "title": "Marketing Is Dead? Product-Led Growth for Mobile Apps",
       "description": "Why more users won't fix a leaky app. How product-led growth, retention and referral make every acquired user more valuable.",
       "image": "https://helixgrowth.io/blog/product-led-growth-mobile-apps/og.jpg"
     },
@@ -28,7 +28,7 @@
         {
           "@type": "BlogPosting",
           "@id": "https://helixgrowth.io/blog/product-led-growth-mobile-apps#article",
-          "headline": "Marketing is dead. Long live the Product.",
+          "headline": "Marketing is dead. Long live the product.",
           "description": "Why more users won't fix a leaky app. How product-led growth, retention and referral make every acquired user more valuable.",
           "url": "https://helixgrowth.io/blog/product-led-growth-mobile-apps",
           "mainEntityOfPage": "https://helixgrowth.io/blog/product-led-growth-mobile-apps",
@@ -38,7 +38,7 @@
           "datePublished": "2026-11-27",
           "dateModified": "2026-11-27",
           "inLanguage": "en",
-          "wordCount": 1589,
+          "wordCount": 1931,
           "articleSection": "Product-led growth",
           "keywords": "product-led growth, mobile app growth, app retention, referral, activation",
           "author": {
@@ -75,7 +75,7 @@
             {
               "@type": "ListItem",
               "position": 3,
-              "name": "Marketing is dead. Long live the Product.",
+              "name": "Product-led growth for mobile apps",
               "item": "https://helixgrowth.io/blog/product-led-growth-mobile-apps"
             }
           ]

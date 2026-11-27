@@ -1,6 +1,6 @@
 ---
-title: "Marketing is dead. Long live the Product."
-seoTitle: "Marketing is dead. Long live the Product. | Helix Growth"
+title: "Marketing is dead. Long live the product."
+seoTitle: "Marketing Is Dead? Product-Led Growth for Mobile Apps"
 description: "Why more users won't fix a leaky app. How product-led growth, retention and referral make every acquired user more valuable."
 slug: "product-led-growth-mobile-apps"
 category: "Product-led growth"
@@ -8,7 +8,7 @@ tags: ["product-led growth", "mobile app growth", "app retention", "referral", "
 author: "Hugo Blanchart"
 datePublished: "2026-11-27"
 dateModified: "2026-11-27"
-readingTime: "7 min read"
+readingTime: "9 min read"
 excerpt: "Most founders are trying to solve a product problem with a marketing solution. Here is where sustainable mobile app growth starts."
 cover: "/blog/product-led-growth-mobile-apps/cover.webp"
 coverAlt: "A line of acquisition that ends, beside a product loop that returns into itself"
@@ -65,6 +65,8 @@ But it comes with a dependency.
 When acquisition becomes more expensive, creative performance deteriorates or a distribution channel stops working, growth can become much harder to sustain.
 
 You're constantly feeding the machine.
+
+And money alone doesn't create a reason to stay. Quibi, a short-video streaming app, raised $1.75 billion, launched in April 2020 and [announced its shutdown about six months later](https://www.pbs.org/newshour/arts/short-video-app-quibi-shutting-down-just-months-after-launch). Its founders wrote that the idea itself or the timing may have been the problem. Either way, a very large budget couldn't make up for it.
 
 ### 2. Product-led growth
 
@@ -138,6 +140,8 @@ It's because the product made them feel something. It solved a recurring problem
 
 That's a different level of product experience.
 
+Spotify Wrapped is a good example. It turns a year of listening data into a story about the user, one that people want to show others. Spotify reported that Wrapped 2025 reached [more than 200 million engaged users in its first 24 hours and was shared more than 500 million times](https://techcrunch.com/2025/12/04/spotify-says-wrapped-2025-is-its-biggest-yet-with-200m-users-in-its-first-day). It works as a marketing moment because it is built from the product itself.
+
 **The best products don't just remove friction. They create reasons to come back.**
 
 This is where psychological and behavioral mechanisms become interesting.
@@ -174,11 +178,15 @@ This creates a powerful loop:
 
 The stronger the loop, the less dependent the business becomes on constantly increasing its acquisition spend.
 
+Dropbox is the classic case, even though it's more than a mobile app. Paid search was costing [$233 to $388 per acquired customer for a $99 product](https://www.slideshare.net/slideshow/dropbox-startuplessonslearned/42432071). A referral program that rewarded both sides with extra storage permanently increased signups by 60%. Registered users went from 100,000 to 4 million in about 15 months, with 35% of daily signups coming from referrals.
+
 There is an important distinction here: retention alone doesn't guarantee a healthy business. You still need monetization, sustainable unit economics and enough acquisition to support your ambitions.
 
 But without retention, you're constantly replacing users instead of building on the value you've already created.
 
 That's an expensive way to grow.
+
+Duolingo shows what working on retention can do. Its former Chief Product Officer, Jorge Mazal, describes how the team focused on keeping current users, with features such as leaderboards and improvements to streaks. [Over four years, daily active users grew 4.5x](https://www.lennysnewsletter.com/p/how-duolingo-reignited-user-growth). The current user retention rate rose 21%, and the share of daily users with a streak of seven days or more nearly tripled, to more than half.
 
 ## Stop looking at your dashboard. Start understanding your users.
 
@@ -189,6 +197,8 @@ A dashboard can tell you that 40% of users abandon onboarding.
 It won't necessarily tell you why.
 
 Are they confused? Are they unconvinced? Did they expect something different? Are they being asked for information before understanding the value?
+
+That last question was central to our work on [Prose](/case-studies/prose), a personalized haircare brand. The onboarding was asking for personal information before the value was visible. The new version improved onboarding conversion by 34% relative to the previous one, validated through an A/B test.
 
 The same applies to retention.
 
@@ -205,6 +215,8 @@ Sometimes the opportunity is a better onboarding experience.
 Sometimes it's a different [monetization strategy](/case-studies/wizz).
 
 Sometimes it's introducing a reason for users to return, or making an existing product benefit much more compelling.
+
+On [Perifit](/case-studies/perifit), a connected health product, showing the paywall more and adding social proof to the existing value proposition doubled paywall conversion. On [Wizz](/case-studies/wizz), a social discovery app, one new monetization feature contributed to monthly recurring revenue rising from about $3M to $4M between October and November 2025.
 
 The point isn't to optimize every screen.
 
